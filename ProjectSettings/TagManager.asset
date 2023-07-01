@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Walls
+  - WallTile
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Road
+    uniqueID: 2369165731
+    locked: 0
+  - name: Wall
+    uniqueID: 3644894179
+    locked: 0
+  - name: Character
+    uniqueID: 1394627509
+    locked: 0
+  - name: Collision
+    uniqueID: 1138546255
     locked: 0
