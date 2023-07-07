@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Pluto
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - UI
   - Walls
   - WallTile
-  - 
+  - Minimap
   - 
   - 
   - 
@@ -55,4 +57,7 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1394627509
+    locked: 0
+  - name: Trees
+    uniqueID: 1518762457
     locked: 0

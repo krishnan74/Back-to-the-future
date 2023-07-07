@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class IsometricCharacterRenderer : MonoBehaviour
  {
-    public static readonly string[] staticDirections = { "Idle" };
-    public static readonly string[] runDirections = {"Run N", "NW-walk", "Run W", "SW-walk", "S-walk", "SE-walk", "Run E", "NE-walk"};
+    public static readonly string[] staticDirections = { "N-Idle", "NW-Idle", "W-Idle", "SW-Idle", "Idle", "SE-Idle", "E-Idle", "NE-Idle" };
+    public static readonly string[] runDirections = {"N-walk", "NW-walk", "W-walk", "SW-walk", "S-walk", "SE-walk", "E-walk", "NE-walk"};
     
     Animator animator;
     int lastDirection;
@@ -17,15 +17,19 @@ public class IsometricCharacterRenderer : MonoBehaviour
     
     public void SetDirection(Vector2 direction, bool flag){
         //use the Run states by default
+        string[] directionArray = null;   
+           
         if(flag){
-            string[] directionArray = null;
+            
 
             directionArray = runDirections;  
             lastDirection = DirectionToIndex(direction, 8);
         animator.Play(directionArray[lastDirection]);
         }
-        else{ 
-            animator.Play(staticDirections[0]);
+        else{   
+             directionArray = runDirections;  
+            lastDirection = DirectionToIndex(direction, 8);
+            animator.Play(staticDirections[lastDirection]);
 
         }
     } 
