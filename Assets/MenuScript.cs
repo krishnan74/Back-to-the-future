@@ -24,4 +24,12 @@ public class MenuScript : MonoBehaviour
             yield return null; 
         }
     }
+
+    public void ExitGame(){
+
+        slider.value = 0f; 
+        loadingPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously("Menu"));
+    }  
+
 }

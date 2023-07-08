@@ -6,27 +6,36 @@ public class GameChanges : MonoBehaviour
 {
     public Slider slider;
     public float DamagePoints;
-    public float HealPoints;
+    public int plutoCount = 0;
+    public Text numberText;
+    public Text scoreText;
 
+    public float healthIncrementByPoints;
+    public float healthIncrementAuto;
 
     public void TakeDamage()
     {
-         slider.value -= DamagePoints;
+         slider.value -= (DamagePoints/1000);
     }
 
-    public void PlusHealth()
+    private void Update()
     {
-        slider.value += HealPoints;
-    }
+        slider.value += (healthIncrementAuto/1000);
 
+        
     
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.L))
-        {
-            PlusHealth();
-        }
     }
+
+    public void Increment(){
+        plutoCount++;
+        numberText.text = plutoCount.ToString();
+        scoreText.text = plutoCount.ToString();
+    }
+
+    public void HealthIncrement(){
+        slider.value += (healthIncrementByPoints/1000);
+    }
+       
+
+    // Update is called once per fra
 }

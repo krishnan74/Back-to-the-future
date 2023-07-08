@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
         if (distance < damageThreshold)
         {
             gameChanges.TakeDamage();
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
             // Destroy the enemy game object
 
