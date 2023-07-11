@@ -8,37 +8,58 @@ public class WASD_movement : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     
-    public List<Sprite> nSprites;
-    public List<Sprite> neSprites;
-    public List<Sprite> eSprites;
-    public List<Sprite> seSprites;
-    public List<Sprite> sSprites;
-    public List<Sprite> swSprites;
-    public List<Sprite> wSprites;
-    public List<Sprite> nwSprites;
-    public List<Sprite> idleSprites;
+    public List<Sprite> nSpritesWalk;
+    public List<Sprite> neSpritesWalk;
+    public List<Sprite> eSpritesWalk;
+    public List<Sprite> seSpritesWalk;
+    public List<Sprite> sSpritesWalk;
+    public List<Sprite> swSpritesWalk;
+    public List<Sprite> wSpritesWalk;
+    public List<Sprite> nwSpritesWalk;
+    public List<Sprite> idleSpritesWalk;
+
+    public List<Sprite> nSpritesRun;
+    public List<Sprite> neSpritesRun;
+    public List<Sprite> eSpritesRun;
+    public List<Sprite> seSpritesRun;
+    public List<Sprite> sSpritesRun;
+    public List<Sprite> swSpritesRun;
+    public List<Sprite> wSpritesRun;
+    public List<Sprite> nwSpritesRun;
 
 
     public float walkSpeed;
+    public float runSpeeed;
+    public float dashSpeed;
+    public float dashDuration;
+    public float dashCooldown;
+    public bool isDashing;
+    
     public float frameRate;
 
     float idleTime;
 
     Vector2 direction;
 
-    private Collider2D coll;
+    public BoxCollider2D boxCollider;
+    public CapsuleCollider2D capsuleCollider;
+
+    public float doubleClickTimeThreshold = 0.3f; // Maximum time between two clicks to consider as a double-click
+    private float lastClickTime = 0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        coll = GetComponent<Collider2D>();
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
         rb.velocity = direction * walkSpeed;
         HandleSpriteRenderer();
@@ -56,14 +77,37 @@ public class WASD_movement : MonoBehaviour
 
          if (Input.GetKeyDown(KeyCode.Space))
         {
-            coll.enabled = false; // Disable the Collider
+            capsuleCollider.enabled = false; // Disable the Collider
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            coll.enabled = true; // Enable the Collider
+            capsuleCollider.enabled = true; // Enable the Collider
         }
 
+
+        if (Input.GetMouseButtonDown(0)){
+        // Calculate the time elapsed since the last click
+        float timeSinceLastClick = Time.time - lastClickTime;
+
+        // Check if the time elapsed is within the double-click threshold
+        if (timeSinceLastClick <= doubleClickTimeThreshold)
+        {
+            // Double-click detected
+            StartCoroutine(Dash());        
+        }
+            lastClickTime = Time.time;
+
+        }
+        
     }
+
+    private IEnumerator Dash(){
+        isDashing = true;
+        rb.velocity = direction * dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+    }
+
 
     void HandleSpriteRenderer(){
         if(!spriteRenderer.flipX && direction.x < 0) {
@@ -79,32 +123,68 @@ public class WASD_movement : MonoBehaviour
         
         List<Sprite> selectedSprites = null;
 
-        if(direction.x == 0 && direction.y == 0){
-            selectedSprites = idleSprites;
+        if(!Input.GetKeyDown(KeyCode.LeftShift)){
+            if(direction.x == 0 && direction.y == 0){
+            selectedSprites = idleSpritesWalk;
         }
 
         if(direction.y > 0){
             if(Mathf.Abs(direction.x) > 0){
-                selectedSprites = neSprites;
+                selectedSprites = neSpritesWalk;
             }
             else{
-                selectedSprites = nSprites;
+                selectedSprites = nSpritesWalk;
             }
         }
         else if(direction.y < 0){
             if(Mathf.Abs(direction.x) > 0){
-                selectedSprites = seSprites;
+                selectedSprites = seSpritesWalk;
             }
             else{
-                selectedSprites = sSprites;
+                selectedSprites = sSpritesWalk;
             }
         }
         else{
             if(Mathf.Abs(direction.x) > 0){
-                selectedSprites = eSprites;
+                selectedSprites = eSpritesWalk;
             }
 
+
         }
+        }
+
+        else{
+
+            if(direction.x == 0 && direction.y == 0){
+            selectedSprites = idleSpritesWalk;
+            }
+
+            if(direction.y > 0){
+                if(Mathf.Abs(direction.x) > 0){
+                    selectedSprites = neSpritesRun;
+                }
+                else{
+                    selectedSprites = nSpritesRun;
+                }
+            }
+            else if(direction.y < 0){
+                if(Mathf.Abs(direction.x) > 0){
+                    selectedSprites = seSpritesRun;
+                }
+                else{
+                    selectedSprites = sSpritesRun;
+                }
+            }
+            else{
+                if(Mathf.Abs(direction.x) < 0){
+                    selectedSprites = wSpritesRun;
+                }
+
+
+            }
+        }
+
+        
 
 
 

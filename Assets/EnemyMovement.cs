@@ -1,21 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour
 {
     public float movementSpeed = 3f;
     public float damageThreshold = 2f; // Distance threshold for taking damage
     private Transform target;
+    private GameObject targetObject;
     private Vector3 extra = new Vector3(2f,2f,0f);
     private SpriteRenderer spriteRenderer;
-    private GameChanges gameChanges;    public GameObject plutoPrefab; // Reference to the Pluto prefab
+    public Slider enemyHealth;
+    public float DamagePoints;
+
+    private GameChanges gameChanges;    
+    public GameObject plutoPrefab; // Reference to the Pluto prefab
 
 
 
     private void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        targetObject = GameObject.FindGameObjectWithTag("Player");
+        target = targetObject.transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameChanges = target.GetComponent<GameChanges>();
+        SpriteRenderer spriteRendererPlayer = targetObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -42,15 +50,24 @@ public class EnemyMovement : MonoBehaviour
         if (distance < damageThreshold)
         {
             gameChanges.TakeDamage();
+            
             if (Input.GetMouseButtonDown(0))
             {
-            // Destroy the enemy game object
-
-            Destroy(gameObject);
-
-            // Spawn the Pluto prefab at the enemy's position
-            Instantiate(plutoPrefab, transform.position + extra, Quaternion.identity);
+                enemyHealth.value -= (DamagePoints/1000);
             }
         }
+
+        DestroyEnemy();
+        
     }
+
+    void DestroyEnemy(){
+        if(enemyHealth.value== 0){
+            Destroy(gameObject);
+            Instantiate(plutoPrefab, transform.position + extra, Quaternion.identity);
+
+        }
+    }
+
+
 }

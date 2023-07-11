@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 
 public class GameChanges : MonoBehaviour
@@ -9,22 +10,38 @@ public class GameChanges : MonoBehaviour
     public int plutoCount = 0;
     public Text numberText;
     public Text scoreText;
+    public SpriteRenderer spriteRendererPlayer;
 
     public float healthIncrementByPoints;
     public float healthIncrementAuto;
+    public float red;
+
+     private void Start()
+    {
+    }
+
 
     public void TakeDamage()
     {
          slider.value -= (DamagePoints/1000);
+         spriteRendererPlayer.color = Color.red;
+         StartCoroutine(ChangeColorBack());
+
+    }
+
+    private IEnumerator ChangeColorBack()
+    {
+        yield return new WaitForSeconds(red);
+        spriteRendererPlayer.color = Color.white;
     }
 
     private void Update()
     {
         slider.value += (healthIncrementAuto/1000);
-
         
-    
     }
+
+
 
     public void Increment(){
         plutoCount++;
