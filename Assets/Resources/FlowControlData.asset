@@ -21,12 +21,22 @@ MonoBehaviour:
     verbose: 1
     emulatorEndpoint: http://127.0.0.1:8888/v1
   _textReplacements:
-  - description: 
-    originalText: 
-    replacementText: 
-    active: 0
-    _applyToAccounts: []
-    _applyToGateways: []
+  - description: sample Contract
+    originalText: sampleCon
+    replacementText: flow-trash
+    active: 1
+    _applyToAccounts:
+    - All
+    _applyToGateways:
+    - Emulator
+  - description: sample Acc
+    originalText: GAME_DEPLOY_ACCOUNT
+    replacementText: 0xf8d6e0586b0a20c7
+    active: 1
+    _applyToAccounts:
+    - All
+    _applyToGateways:
+    - Emulator
   _accounts:
   - _name: emulator_service_account
     infoKeys:
@@ -35,4 +45,12 @@ MonoBehaviour:
     infoValues:
     - 47dd900ecec19e95865f425cd545428225a600941b98943a8241d579f513b31b
     - 0xf8d6e0586b0a20c7
+    _gatewayName: Emulator
+  - _name: player1
+    infoKeys:
+    - Private Key
+    - Address
+    infoValues:
+    - e6513ff86594cfbe39503ac13f8ddc82bbfd691243c27ef1ca82463183940cc1
+    - 0x01cf0e2f2f715450
     _gatewayName: Emulator
