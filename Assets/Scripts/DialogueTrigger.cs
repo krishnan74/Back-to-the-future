@@ -6,12 +6,31 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Message[] messages;
     public Actor[] actors;
+    public Vector3 targetPosition;
+    private bool dialogueTriggered = false;
+    public GameObject dialogueCanvas;
+
+
+    void Update()
+    {
+        // Check if the object is at the target position
+        if (transform.position == targetPosition && !dialogueTriggered)
+        {
+            dialogueCanvas.SetActive(true);
+            // Call the dialogue function to trigger the dialogue
+            StartDialogue();
+            dialogueTriggered = true;
+        }
+    }
+
 
     public void StartDialogue()
     {
-        FindObjectOfType<DialogueManager>().OpenDialogue(messages,actors);
+        FindObjectOfType<DialogurManager>().OpenDialogue(messages,actors);
     }
+    
 }
+
 
 [System.Serializable]
 public class Message
