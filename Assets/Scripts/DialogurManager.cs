@@ -15,6 +15,7 @@ public class DialogurManager : MonoBehaviour
     Actor[] currentActors;
     int activeMessage = 0;
     public static bool isActive = false;
+    public GameObject dialogueCanvas;
 
     public void OpenDialogue(Message[] messages,Actor[] actors)
     {
@@ -48,6 +49,7 @@ public class DialogurManager : MonoBehaviour
         {
             Debug.Log("convo done");
             isActive = false;
+            dialogueCanvas.SetActive(false);
         }
     }
 
