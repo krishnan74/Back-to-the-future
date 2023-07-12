@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour
 {
     public Slider slider;
+    public string SceneName;
     public GameObject loadingPanel; 
     // Start is called before the first frame update
     public void PlayGame(){
 
         slider.value = 0f; 
         loadingPanel.SetActive(true);
-        StartCoroutine(LoadAsynchronously("dk"));
+        StartCoroutine(LoadAsynchronously(SceneName));
     }  
 
     IEnumerator LoadAsynchronously(string sceneName){
@@ -31,6 +32,15 @@ public class MenuScript : MonoBehaviour
         loadingPanel.SetActive(true);
         StartCoroutine(LoadAsynchronously("Menu"));
     }  
+
+    public void ExitMiniGame(){
+
+        slider.value = 0f; 
+        loadingPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously("dk"));
+    }  
+
+
 
     
 }
