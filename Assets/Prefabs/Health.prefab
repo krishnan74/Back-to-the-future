@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c660c4b6663d4479e3795bad94dcb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dieTime: 10
 --- !u!212 &2642945017933631561
 SpriteRenderer:
   m_ObjectHideFlags: 0

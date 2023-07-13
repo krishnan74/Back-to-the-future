@@ -27,6 +27,7 @@ public class WASD_movement : MonoBehaviour
     public List<Sprite> wSpritesRun;
     public List<Sprite> nwSpritesRun;
 
+    public List<Sprite> attackAnim;
 
     public float walkSpeed;
     public float runSpeeed;
@@ -44,8 +45,9 @@ public class WASD_movement : MonoBehaviour
     public BoxCollider2D boxCollider;
     public CapsuleCollider2D capsuleCollider;
 
-    public float doubleClickTimeThreshold = 0.3f; // Maximum time between two clicks to consider as a double-click
-    private float lastClickTime = 0f;
+    List<Sprite> directionSprites;
+
+
 
 
     // Start is called before the first frame update
@@ -63,7 +65,16 @@ public class WASD_movement : MonoBehaviour
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
         rb.velocity = direction * walkSpeed;
         HandleSpriteRenderer();
-        List<Sprite> directionSprites =  SetSprite();
+
+        if (Input.GetMouseButtonDown(0)){
+            directionSprites =  attackAnim;
+
+        }        
+        
+        else{
+            directionSprites =  SetSprite();
+        }
+        
     
         if(directionSprites != null){
 
@@ -75,38 +86,11 @@ public class WASD_movement : MonoBehaviour
             idleTime = Time.time;
         }
 
-         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            capsuleCollider.enabled = false; // Disable the Collider
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            capsuleCollider.enabled = true; // Enable the Collider
-        }
 
-
-        if (Input.GetMouseButtonDown(0)){
-        // Calculate the time elapsed since the last click
-        float timeSinceLastClick = Time.time - lastClickTime;
-
-        // Check if the time elapsed is within the double-click threshold
-        if (timeSinceLastClick <= doubleClickTimeThreshold)
-        {
-            // Double-click detected
-            StartCoroutine(Dash());        
-        }
-            lastClickTime = Time.time;
-
-        }
         
     }
 
-    private IEnumerator Dash(){
-        isDashing = true;
-        rb.velocity = direction * dashSpeed;
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
-    }
+    
 
 
     void HandleSpriteRenderer(){

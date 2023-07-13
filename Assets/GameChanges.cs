@@ -7,7 +7,6 @@ public class GameChanges : MonoBehaviour
 {
     public Slider slider;
     public float DamagePoints;
-    public int plutoCount = 0;
     public Text numberText;
     public Text scoreText;
     public SpriteRenderer spriteRendererPlayer;
@@ -20,6 +19,9 @@ public class GameChanges : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseGame.isPaused = false;
+        numberText.text = StateManager.plutoCount.ToString();
+        scoreText.text = StateManager.plutoCount.ToString();
+        transform.position = StateManager.LastPosition;
 
     }
 
@@ -43,16 +45,23 @@ public class GameChanges : MonoBehaviour
         if(!PauseGame.isPaused){
             slider.value += (healthIncrementAuto/1000);
         }
-        
-        
+
+        StateManager.LastPosition = transform.position;
+
     }
 
 
 
     public void Increment(){
-        plutoCount++;
-        numberText.text = plutoCount.ToString();
-        scoreText.text = plutoCount.ToString();
+        StateManager.plutoCount++;
+        numberText.text = StateManager.plutoCount.ToString();
+        scoreText.text = StateManager.plutoCount.ToString();
+    }
+
+    public void EnemyPlutoIncrement(){
+        StateManager.plutoCount+=5;
+        numberText.text = StateManager.plutoCount.ToString();
+        scoreText.text = StateManager.plutoCount.ToString();
     }
 
     public void HealthIncrement(){

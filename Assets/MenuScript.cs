@@ -25,6 +25,21 @@ public class MenuScript : MonoBehaviour
         }
     }
 
+    public void MenuNewGame(){
+        slider.value = 0f; 
+        loadingPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously("intro-cutscene"));
+    }
+
+    public void MenuLoadGame(){
+        slider.value = 0f; 
+        loadingPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously("dk"));
+    }
+
+    public void MenuExitGame(){
+        Application.Quit();
+    }
     public void ExitGame(){
 
         slider.value = 0f; 

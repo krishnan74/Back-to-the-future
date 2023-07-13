@@ -312,7 +312,7 @@ MonoBehaviour:
   damageThreshold: 2
   enemyHealth: {fileID: 394411800749103874}
   DamagePoints: 360
-  plutoPrefab: {fileID: 5793389803681238876, guid: a826a58d4294de74980c892b12e0b932, type: 3}
+  plutoPrefab: {fileID: 5793389803681238876, guid: 6d611d17014ab814bacde8e5cd0ed803, type: 3}
 --- !u!95 &1470241138953665234
 Animator:
   serializedVersion: 5
