@@ -56,6 +56,12 @@ public class Interactable : MonoBehaviour
         StartCoroutine(LoadAsynchronously("FlappyBird"));
     }
 
+    public void EnterPlatformer(){
+        slider.value = 0f; 
+        minigameloadingPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously("Platformer"));
+    }
+
     IEnumerator LoadAsynchronously(string sceneName){
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         

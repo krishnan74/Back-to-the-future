@@ -46,4 +46,6 @@ public class PlaatformerMovement : MonoBehaviour
             isJumping = true;
         }
     }
+
+    
 }
