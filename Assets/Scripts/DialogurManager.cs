@@ -11,6 +11,9 @@ public class DialogurManager : MonoBehaviour
     public Text messageText;
     public RectTransform backgroundBox;
 
+    public float nextMessageInterval;
+    public float initialDelay;
+
     Message[] currentMessages;
     Actor[] currentActors;
     int activeMessage = 0;
@@ -56,7 +59,8 @@ public class DialogurManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("NextMessage", initialDelay, nextMessageInterval);
+
     }
 
     // Update is called once per frame
@@ -66,5 +70,8 @@ public class DialogurManager : MonoBehaviour
         {
             NextMessage();
         }
+
+                
+
     }
 }
