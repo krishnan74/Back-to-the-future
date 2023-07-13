@@ -12,6 +12,9 @@ public class PlaatformerMovement : MonoBehaviour
     public bool isJumping;
 
     private Rigidbody2D rb;
+
+    public GameObject gameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,11 @@ public class PlaatformerMovement : MonoBehaviour
         {
             isJumping = false;
         }
+
+        if(other.gameObject.CompareTag("End"))
+        {
+            gameOverScreen.SetActive(true);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other) 
@@ -45,7 +53,11 @@ public class PlaatformerMovement : MonoBehaviour
         {
             isJumping = true;
         }
+
+        
     }
+
+    
 
     
 }

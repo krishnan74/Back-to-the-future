@@ -8,6 +8,8 @@ TagManager:
   - Pluto
   - Building
   - FlappyObstacle
+  - Ground
+  - End
   layers:
   - Default
   - TransparentFX
