@@ -10,7 +10,6 @@ public class MenuScript : MonoBehaviour
     public GameObject loadingPanel; 
     // Start is called before the first frame update
     public void PlayGame(){
-
         slider.value = 0f; 
         loadingPanel.SetActive(true);
         StartCoroutine(LoadAsynchronously(SceneName));

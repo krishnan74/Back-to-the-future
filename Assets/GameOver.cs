@@ -14,6 +14,7 @@ public class GameOver : MonoBehaviour
 
         if (slider.value == 0f)
         {
+            Time.timeScale = 0;
             PlayerHealth.SetActive(false);
             GameOverPanel.SetActive(true); // Activate the game object
         }

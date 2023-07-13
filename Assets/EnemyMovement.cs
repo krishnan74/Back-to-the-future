@@ -47,7 +47,7 @@ public class EnemyMovement : MonoBehaviour
         float distance = Vector3.Distance(transform.position, target.position);
 
         // Check if the distance is less than the damage threshold
-        if (distance < damageThreshold)
+        if (distance < damageThreshold && !(PauseGame.isPaused))
         {
             gameChanges.TakeDamage();
             

@@ -5,34 +5,42 @@ using UnityEngine;
 public class Flappy : MonoBehaviour
 {
     public GameObject GameOverScreen;
+
+    public GameObject StartScreen;
     public float jumpForce = 5f;
     private Rigidbody2D rb;
-    private float destroyThreshold = 0.1f;
+    private float destroyThreshold = 0.5f;
 
-    bool isActive = true;
     public float targetXup;
     public float targetXdown;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Time.timeScale = 0;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isActive)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
+            Time.timeScale = 1;
+            StartScreen.SetActive(false);
+
             Jump();
+            
         }
 
         if (Mathf.Abs(transform.position.y - targetXup) < destroyThreshold)
-        {   isActive = false;
+        {   
             GameOverScreen.SetActive(true);
+            Time.timeScale = 0;
         }
 
-        if (Mathf.Abs(transform.position.y - targetXdown) < destroyThreshold)
-        {   isActive = false;
+        if (Mathf.Abs(transform.position.y + targetXdown) < destroyThreshold)
+        {   
             GameOverScreen.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
@@ -40,8 +48,8 @@ public class Flappy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("FlappyObstacle"))
         {
-            isActive = false;
             GameOverScreen.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
@@ -49,4 +57,5 @@ public class Flappy : MonoBehaviour
     {
         rb.velocity = Vector2.up * jumpForce;
     }
+
 }

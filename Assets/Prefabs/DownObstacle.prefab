@@ -101,7 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3
   destroyThreshold: 0.1
-  dis: -20.16
+  scoreTarget: -6.53
+  PauseScoreText: {fileID: 0}
+  GameOverScoreText: {fileID: 0}
 --- !u!61 &7367285351686371412
 BoxCollider2D:
   m_ObjectHideFlags: 0

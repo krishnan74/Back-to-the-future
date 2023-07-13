@@ -18,6 +18,9 @@ public class GameChanges : MonoBehaviour
 
      private void Start()
     {
+        Time.timeScale = 1;
+        PauseGame.isPaused = false;
+
     }
 
 
@@ -37,7 +40,10 @@ public class GameChanges : MonoBehaviour
 
     private void Update()
     {
-        slider.value += (healthIncrementAuto/1000);
+        if(!PauseGame.isPaused){
+            slider.value += (healthIncrementAuto/1000);
+        }
+        
         
     }
 
