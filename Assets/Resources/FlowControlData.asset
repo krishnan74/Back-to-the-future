@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: FlowControlData
   m_EditorClassIdentifier: 
   _emulatorSettings:
-    emulatorDataDirectory: C:/Users/Robert/Back-to-the-future/Back-to-the-future/flowEmulator
+    emulatorDataDirectory: C:/Users/HP/Flow/flowEmulator
     flowExecutablePathOverride: 
-    runEmulatorInPlayMode: 1
+    runEmulatorInPlayMode: 0
     persistData: 1
     killOtherFlow: 1
     verbose: 1
     emulatorEndpoint: http://127.0.0.1:8888/v1
   _textReplacements:
   - description: sample Contract
-    originalText: sampleCon
-    replacementText: flow-trash
+    originalText: bttwfGame.cdc
+    replacementText: BackToTheFuture
     active: 1
     _applyToAccounts:
     - All
