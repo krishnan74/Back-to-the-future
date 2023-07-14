@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlowControlData
   m_EditorClassIdentifier: 
   _emulatorSettings:
-    emulatorDataDirectory: C:/Users/HP/Flow/flowEmulator
+    emulatorDataDirectory: C:\Users\Robert\Back-to-the-future\Back-to-the-future
     flowExecutablePathOverride: 
     runEmulatorInPlayMode: 0
     persistData: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
     _applyToGateways:
     - Emulator
   - description: sample Acc
-    originalText: GAME_DEPLOY_ACCOUNT
+    originalText: emulator_service_account
     replacementText: 0xf8d6e0586b0a20c7
     active: 1
     _applyToAccounts:
@@ -43,7 +43,7 @@ MonoBehaviour:
     - Private Key
     - Address
     infoValues:
-    - 47dd900ecec19e95865f425cd545428225a600941b98943a8241d579f513b31b
+    - e2385ae4376f8f4677dba960cd27c729f7156ac70735eba490b507c9c6696b63
     - 0xf8d6e0586b0a20c7
     _gatewayName: Emulator
   - _name: player1
