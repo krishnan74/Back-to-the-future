@@ -1,13 +1,12 @@
 {
   "dependencies": {
     "com.dapperlabs.flowsdk": {
-      "version": "https://github.com/onflow/UnityFlowSDK.git",
+      "version": "file:com.dapperlabs.flowsdk",
       "depth": 0,
-      "source": "git",
+      "source": "embedded",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.0.2"
-      },
-      "hash": "b6000f4973672409837bd79f6c13d56b04706c22"
+      }
     },
     "com.unity.2d.animation": {
       "version": "7.0.9",
