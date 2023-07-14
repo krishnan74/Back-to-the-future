@@ -1,7 +1,3 @@
-
-
-
-
 pub contract BackToTheFuture{
 
 
