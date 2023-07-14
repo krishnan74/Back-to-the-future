@@ -462,16 +462,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2033965577}
-        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: MenuNewGame
-        m_Mode: 1
+      - m_Target: {fileID: 2033965579}
+        m_TargetAssemblyTypeName: FlowController.GameController, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Krish
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &811597731
@@ -809,16 +809,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2033965577}
-        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: MenuExitGame
-        m_Mode: 1
+      - m_Target: {fileID: 2033965579}
+        m_TargetAssemblyTypeName: FlowController.GameController, Assembly-CSharp
+        m_MethodName: Login
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Krish
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1284307890
@@ -1380,6 +1380,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2033965578}
   - component: {fileID: 2033965577}
+  - component: {fileID: 2033965580}
+  - component: {fileID: 2033965579}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1418,6 +1420,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2033965579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033965576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7572ab4a70d2c244f9ea756e375297d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2033965580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033965576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b45ba6adace9b46be359f7dd263e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createStatetxn: {fileID: 3232733424486734734, guid: ba8364aee78cb754db727bea4999b80b, type: 3}
+  updateHealthtxn: {fileID: 3232733424486734734, guid: de1f06237d94beb4cabbf84a56462059, type: 3}
+  updateMissiontxn: {fileID: 3232733424486734734, guid: 5565568aa456e484f9e0791e1c8a47dc, type: 3}
+  updatePlutoniumtxn: {fileID: 3232733424486734734, guid: 98d0bb84ab1d48d4aa15907fb9469bb5, type: 3}
 --- !u!114 &2090286582 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2673985554763974977, guid: d43313ead0324a5468096ebb4d279ef3, type: 3}
