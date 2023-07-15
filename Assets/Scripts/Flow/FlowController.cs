@@ -33,6 +33,8 @@ namespace FlowController
 
         // FlowControl Account object, used to help with text replacements in scripts and transactions
         private FlowControl.Account FLOW_ACCOUNT = null;
+        public Dictionary<string, string> accountDictionary = new Dictionary<string, string>();
+
 
         private static FlowController m_instance = null;
         public static FlowController Instance
@@ -62,14 +64,19 @@ namespace FlowController
                 Protocol = FlowConfig.NetworkProtocol.HTTP
             };
             FlowSDK.Init(flowConfig);
-
-            // Register DevWallet wallet provider with SDK
             FlowSDK.RegisterWalletProvider(new DevWalletProvider());
 
-
+            // Register DevWallet wallet provider with SDK
             // Register DevWallet
 
         }
+
+
+
+        public void AddRecord(Dictionary<string, string> dictionary, string key, string value){
+            dictionary[key] = value; // Add or update the key-value pair in the dictionary
+        }
+
 
         /// <summary>
         /// Attempts to log in by executing a transaction using the provided credentials
@@ -77,25 +84,110 @@ namespace FlowController
         /// <param name="username">An arbitrary username the player would like to be known by on the leaderboards</param>
         /// <param name="onSuccessCallback">Function that should be called when login is successful</param>
         /// <param name="onFailureCallback">Function that should be called when login fails</param>
-        public void Login(string username, System.Action<string, string> onSuccessCallback, System.Action onFailureCallback)
-        {
+        public void Login(System.Action<string, string> onSuccessCallback, System.Action onFailureCallback){
             // Authenticate an account with DevWallet
-            // Authenticate an account with DevWallet
-             if (FlowSDK.GetWalletProvider().IsAuthenticated() == false){
+            
                 FlowSDK.GetWalletProvider().Authenticate(
                     "", // blank string will show list of accounts from Accounts tab of Flow Control Window
-                    (string address) => onSuccessCallback(address, username),
+                    (string address) =>
+                    {
+                        string accountName = FindNameByAddress(accountDictionary , address); // Get the name of the authenticated account
+                        onSuccessCallback(address, accountName);
+                    },
                     onFailureCallback);
-            }
+            
 
             FLOW_ACCOUNT = new FlowControl.Account
             {
                 GatewayName = "Emulator",   // the network to match
                 AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
             };
-
-
         }
+
+        public string FindNameByAddress(Dictionary<string, string> dictionary, string value)
+        {
+            foreach (var pair in dictionary)
+            {
+                if (pair.Value == value)
+                {
+                    return pair.Key; // Return the key if the value matches
+                }
+            }
+            
+            return null; // Return null if no key is found
+        }
+
+
+
+        public IEnumerator CreateAccount(string accountname, System.Action<string, string> onSuccessCallback, System.Action onFailureCallback){
+            FlowSDK.RegisterWalletProvider(new DevWalletProvider());
+
+            string authAddress = "";
+            FlowSDK.GetWalletProvider().Authenticate("", (string address) =>
+            {
+                authAddress = address;
+            }, null);
+
+            yield return new WaitUntil(() => { return authAddress != ""; });
+
+            //Convert FlowAccount to SdkAccount
+            SdkAccount emulatorSdkAccount = FlowControl.GetSdkAccountByAddress(authAddress);
+            if (emulatorSdkAccount == null)
+            {
+                Debug.LogError("Error getting SdkAccount for emulator_service_account");
+                yield break;
+            }
+
+            //Create a new account with the name "User"
+            Task<SdkAccount> newAccountTask = CommonTransactions.CreateAccount(accountname);
+            yield return new WaitUntil(() => newAccountTask.IsCompleted);
+
+            if (newAccountTask.Result.Error != null)
+            {
+                Debug.LogError($"Error creating new account: {newAccountTask.Result.Error.Message}");
+                onFailureCallback();
+                yield break;
+            }
+
+            //Here we have an SdkAccount
+            SdkAccount userSdkAccount = newAccountTask.Result;
+            string userName = userSdkAccount.Name;
+            string userAddress = userSdkAccount.Address;
+
+
+            FlowControl.Account userAccount = new FlowControl.Account
+            {
+                Name = userSdkAccount.Name,
+                GatewayName = "Emulator",
+                AccountConfig = new Dictionary<string, string>
+                {
+                    ["Address"] = userSdkAccount.Address,
+                    ["Private Key"] = userSdkAccount.PrivateKey
+                }
+            };
+
+            FlowControl.TextReplacement newTextReplacement = new FlowControl.TextReplacement
+            {
+                description = "User Address",
+                originalText = userSdkAccount.Name,
+                replacementText = userSdkAccount.Address,
+                active = true,
+                ApplyToAccounts = new List<string> { "User" },
+                ApplyToGateways = new List<string> { "Emulator" }
+            };
+
+            FlowControl.Data.TextReplacements.Add(newTextReplacement);
+
+
+            FlowControl.Data.Accounts.Add(userAccount);
+            AddRecord(accountDictionary, userSdkAccount.Name, userSdkAccount.Address);
+
+            // Invoke the success callback with the name and address
+            onSuccessCallback?.Invoke(userName, userAddress); 
+        }
+
+        
+
 
         public IEnumerator ListContracts(){
             //Get the address of the emulator_service_account, then get an account object for that account.
@@ -127,11 +219,11 @@ namespace FlowController
                     import BackToTheFuture from 0xf8d6e0586b0a20c7
                     transaction {
                         prepare(acct: AuthAccount) {
-                            acct.save<@BackToTheFuture.State>(<-BackToTheFuture.createState(name: ""user2""), to: /storage/state)            //?? panic(""Could not load counter resource"")
+                            acct.save<@BackToTheFuture.State>(<-BackToTheFuture.createState(name: ""user""), to: /storage/state)            //?? panic(""Could not load counter resource"")
                         }
                     }";
 
-            Task<FlowTransactionResult> transactionTask = FLOW_ACCOUNT.SubmitAndWaitUntilSealed(transaction.Replace("name", $@"""{name}"""));
+            Task<FlowTransactionResult> transactionTask = FLOW_ACCOUNT.SubmitAndWaitUntilSealed(transaction);
             yield return new WaitUntil(() => transactionTask.IsCompleted);
 
             Debug.Log(transactionTask.Result);
@@ -188,23 +280,35 @@ namespace FlowController
 
 
         public IEnumerator UpdatePlutonium(System.Action onSuccessCallback, System.Action onFailureCallback){
+            
+            string updatePlutoTransaction = @"
+            import BackToTheFuture from 0xf8d6e0586b0a20c7
+            transaction {
+                prepare(acct: AuthAccount) {
+                    let ref <- acct.load<@BackToTheFuture.State>(from: /storage/state)            //?? panic(""Could not load counter resource"")
+
+            ref?.updateHealth(_value: 5)
+
+            acct.save(<-ref!, to: /storage/state)
+            }
+            }";
+            
             FLOW_ACCOUNT = new FlowControl.Account
             {
                 GatewayName = "Emulator",   // the network to match
                 AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
             };
 
-            Task<FlowTransactionResult> getState = Transactions.SubmitAndWaitUntilExecuted(FLOW_ACCOUNT.DoTextReplacements(updatePlutoniumtxn.text));
-
-            if (getState.Result.Error != null || getState.Result.ErrorMessage != string.Empty || getState.Result.Status == FlowTransactionStatus.EXPIRED)
+            Task<FlowTransactionResult> updateplutotask = FLOW_ACCOUNT.SubmitAndWaitUntilSealed(updatePlutoTransaction);
+            if (updateplutotask.Result.Error != null || updateplutotask.Result.ErrorMessage != string.Empty || updateplutotask.Result.Status == FlowTransactionStatus.EXPIRED)
             {
                 onFailureCallback();
                 yield break;
             }
 
-            else{
-                onSuccessCallback();
-            }
+            
+            onSuccessCallback();
+            
             
         }
         /// <summary>
