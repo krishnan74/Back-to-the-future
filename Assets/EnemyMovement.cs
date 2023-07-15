@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Slider enemyHealth;
     public float DamagePoints;
-
     private GameChanges gameChanges;    
     public GameObject plutoPrefab; // Reference to the Pluto prefab
+    public GameObject lightningPrefab;
+    public Animator enemyAnimator;
 
 
 
@@ -54,9 +56,11 @@ public class EnemyMovement : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 enemyHealth.value -= (DamagePoints/1000);
+                gameChanges.powerSlider.value += 0.03f;
             }
         }
 
+        
         DestroyEnemy();
         
     }
@@ -67,7 +71,23 @@ public class EnemyMovement : MonoBehaviour
             Instantiate(plutoPrefab, transform.position + extra, Quaternion.identity);
 
         }
+        if (Input.GetMouseButtonDown(1) && gameChanges.powerSlider.value == 1f){
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            enemyAnimator.SetBool("Dead", true);
+            StartCoroutine(WaitAndDestroyEnemies(enemies));
+            gameChanges.powerSlider.value = 0f;
+        }
     }
 
+    IEnumerator WaitAndDestroyEnemies(GameObject[] enemies)
+    {
+        yield return new WaitForSeconds(1f);
+
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+            Instantiate(plutoPrefab, enemy.transform.position + extra, Quaternion.identity);
+        }
+    }
 
 }

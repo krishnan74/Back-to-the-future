@@ -29,41 +29,25 @@ MonoBehaviour:
     - All
     _applyToGateways:
     - Emulator
-  - description: sample Acc
-    originalText: player1
-    replacementText: 0xf8d6e0586b0a20c7
+  - description: TestNet Deploy Account
+    originalText: GAME_DEPLOY_ACCOUNT
+    replacementText: 0x6d9cadb943bd33eb
     active: 1
     _applyToAccounts:
     - All
     _applyToGateways:
-    - Emulator
+    - Flow Testnet
   - description: User Address
-    originalText: DK
-    replacementText: 0x192440c99cb17282
+    originalText: Hello
+    replacementText: 0xe2f72218abeec2b9
     active: 1
     _applyToAccounts:
     - User
     _applyToGateways:
     - Emulator
   - description: User Address
-    originalText: User1
-    replacementText: 0xfd43f9148d4b725d
-    active: 1
-    _applyToAccounts:
-    - User
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: USer4
-    replacementText: 0xeb179c27144f783c
-    active: 1
-    _applyToAccounts:
-    - User
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: sd
-    replacementText: 0x0f7025fa05b578e3
+    originalText: hmm
+    replacementText: 0x06909bc5ba14c266
     active: 1
     _applyToAccounts:
     - User
@@ -78,35 +62,19 @@ MonoBehaviour:
     - 47dd900ecec19e95865f425cd545428225a600941b98943a8241d579f513b31b
     - 0xf8d6e0586b0a20c7
     _gatewayName: Emulator
-  - _name: DK
+  - _name: DeployAccount
     infoKeys:
     - Address
     - Private Key
     infoValues:
-    - 0x192440c99cb17282
-    - bd7d7e3ad6bce9eb6d0843ba079b57918d90d1381100a92f2f2e15e40f46dfaf
-    _gatewayName: Emulator
-  - _name: User1
+    - 0x6d9cadb943bd33eb
+    - bf91da06c5be397b1b296534784d2f32a46172d2855bce1d71d5c737c7b33cdb
+    _gatewayName: Flow Testnet
+  - _name: hmm
     infoKeys:
     - Address
     - Private Key
     infoValues:
-    - 0xfd43f9148d4b725d
-    - eba08d1ceae67bc64c586e9943d24cc00f023e84ab02bbfc79732f1073f457c6
-    _gatewayName: Emulator
-  - _name: USer4
-    infoKeys:
-    - Address
-    - Private Key
-    infoValues:
-    - 0xeb179c27144f783c
-    - b745bd5f186a56ed05fb56e38593f55cb26470280dd58ea24b17818daf66424b
-    _gatewayName: Emulator
-  - _name: sd
-    infoKeys:
-    - Address
-    - Private Key
-    infoValues:
-    - 0x0f7025fa05b578e3
-    - 52f0fff88fc0154d7ddd84000edde581e825bff3f4b26022f90f6f3f68a7b19f
+    - 0x06909bc5ba14c266
+    - 4ae3b51d1d545a925472525b386727f9f70d8d494a67008e311d7a84e57a6e3f
     _gatewayName: Emulator

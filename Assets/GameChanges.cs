@@ -5,16 +5,18 @@ using System.Collections;
 
 public class GameChanges : MonoBehaviour
 {
+
     public Slider slider;
     public float DamagePoints;
     public Text numberText;
     public Text scoreText;
     public SpriteRenderer spriteRendererPlayer;
-
     public float healthIncrementByPoints;
     public float healthIncrementAuto;
     public float red;
 
+    public Slider powerSlider;
+    
      private void Start()
     {
         Time.timeScale = 1;

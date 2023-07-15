@@ -10,6 +10,7 @@ TagManager:
   - FlappyObstacle
   - Ground
   - End
+  - Lightning
   layers:
   - Default
   - TransparentFX

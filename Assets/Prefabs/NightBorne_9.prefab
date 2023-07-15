@@ -283,7 +283,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1394627509
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -259554323, guid: ca68c3e39b6b82b4899157b678728710, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -313,6 +313,8 @@ MonoBehaviour:
   enemyHealth: {fileID: 394411800749103874}
   DamagePoints: 360
   plutoPrefab: {fileID: 5793389803681238876, guid: 6d611d17014ab814bacde8e5cd0ed803, type: 3}
+  lightningPrefab: {fileID: 8659141999794128807, guid: b3838e312ef125f4d882e95b4ab5da85, type: 3}
+  enemyAnimator: {fileID: 1470241138953665234}
 --- !u!95 &1470241138953665234
 Animator:
   serializedVersion: 5
@@ -519,7 +521,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &219923272577403874
 MonoBehaviour:
   m_ObjectHideFlags: 0
