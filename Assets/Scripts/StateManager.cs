@@ -6,5 +6,5 @@ public class StateManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static int plutoCount;
-    public static Vector3 LastPosition;
+    public static Vector3 LastPosition = new Vector3(-5.18f, -3.2f, 0f);
 }

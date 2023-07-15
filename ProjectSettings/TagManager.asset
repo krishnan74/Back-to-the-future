@@ -59,9 +59,9 @@ TagManager:
   - name: AcCharacter
     uniqueID: 2684461697
     locked: 0
-  - name: Character
-    uniqueID: 1394627509
-    locked: 0
   - name: Trees
     uniqueID: 1518762457
+    locked: 0
+  - name: Character
+    uniqueID: 1394627509
     locked: 0
