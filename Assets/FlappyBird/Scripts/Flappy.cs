@@ -5,8 +5,8 @@ using UnityEngine;
 public class Flappy : MonoBehaviour
 {
     public GameObject GameOverScreen;
-
     public GameObject StartScreen;
+    public static bool isGameOver;
     public float jumpForce = 5f;
     private Rigidbody2D rb;
     private float destroyThreshold = 0.5f;
@@ -18,6 +18,7 @@ public class Flappy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Time.timeScale = 0;
+        isGameOver = false;
     }
 
     void Update()
@@ -33,12 +34,14 @@ public class Flappy : MonoBehaviour
 
         if (Mathf.Abs(transform.position.y - targetXup) < destroyThreshold)
         {   
+            isGameOver = true;
             GameOverScreen.SetActive(true);
             Time.timeScale = 0;
         }
 
         if (Mathf.Abs(transform.position.y + targetXdown) < destroyThreshold)
         {   
+            isGameOver = true;
             GameOverScreen.SetActive(true);
             Time.timeScale = 0;
         }
@@ -48,6 +51,7 @@ public class Flappy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("FlappyObstacle"))
         {
+            isGameOver = true;
             GameOverScreen.SetActive(true);
             Time.timeScale = 0;
         }

@@ -8,7 +8,6 @@ pub contract BackToTheFuture{
         pub var Health: Int
         pub var Missions: [String]
 
-
         init(_name: String){
 
             self.Name = _name

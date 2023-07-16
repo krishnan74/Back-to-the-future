@@ -37,49 +37,9 @@ MonoBehaviour:
     - All
     _applyToGateways:
     - Flow Testnet
-  - description: User Address
-    originalText: Hello
-    replacementText: 0xe2f72218abeec2b9
-    active: 1
-    _applyToAccounts:
-    - User
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: hmm
-    replacementText: 0x06909bc5ba14c266
-    active: 1
-    _applyToAccounts:
-    - User
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: User1
-    replacementText: 0x10c4fef62310c807
-    active: 1
-    _applyToAccounts:
-    - All
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: new
-    replacementText: 0xf4a3472b32eac8d8
-    active: 1
-    _applyToAccounts:
-    - All
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: user2
-    replacementText: 0x1beecc6fef95b62e
-    active: 1
-    _applyToAccounts:
-    - All
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: UserNew
-    replacementText: 0xff8975b2fe6fb6f1
+  - description: sampleEmulator
+    originalText: emulator_service_account
+    replacementText: 0xf8d6e0586b0a20c7
     active: 1
     _applyToAccounts:
     - All
@@ -102,11 +62,3 @@ MonoBehaviour:
     - 0x6d9cadb943bd33eb
     - bf91da06c5be397b1b296534784d2f32a46172d2855bce1d71d5c737c7b33cdb
     _gatewayName: Flow Testnet
-  - _name: UserNew
-    infoKeys:
-    - Address
-    - Private Key
-    infoValues:
-    - 0xff8975b2fe6fb6f1
-    - 2c4eaa1cf567530e11dfc5149d10f03294344fd670beb16a1c2c6ac6d34e9380
-    _gatewayName: Emulator

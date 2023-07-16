@@ -44,6 +44,7 @@ public class PlaatformerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("End"))
         {
             gameOverScreen.SetActive(true);
+            StateManager.plutoCount+= 30;
         }
     }
 
