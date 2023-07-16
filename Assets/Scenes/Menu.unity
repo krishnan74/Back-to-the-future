@@ -664,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: -272}
+  m_AnchoredPosition: {x: 329, y: 16}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &244448086
@@ -712,8 +712,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2033965579}
-        m_TargetAssemblyTypeName: FlowController.GameController, Assembly-CSharp
-        m_MethodName: LoginTestNet
+        m_TargetAssemblyTypeName: FlowControllerlast.GameController, Assembly-CSharp
+        m_MethodName: Login
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1233,7 +1233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365472950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1252,7 +1252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -356, y: 102}
+  m_AnchoredPosition: {x: -278, y: 102}
   m_SizeDelta: {x: 271.32, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365472951
@@ -1366,7 +1366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &420325545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1466,7 +1466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -376, y: -272}
+  m_AnchoredPosition: {x: -238, y: 15.9999695}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &561022742
@@ -1514,7 +1514,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2033965579}
-        m_TargetAssemblyTypeName: FlowController.GameController, Assembly-CSharp
+        m_TargetAssemblyTypeName: FlowControllerlast.GameController, Assembly-CSharp
         m_MethodName: LoginEmulator
         m_Mode: 1
         m_Arguments:
@@ -2013,9 +2013,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2033965579}
-        m_TargetAssemblyTypeName: FlowController.GameController, Assembly-CSharp
+        m_TargetAssemblyTypeName: FlowControllerlast.GameController, Assembly-CSharp
         m_MethodName: NewGame
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2886,7 +2886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1422536456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3667,7 +3667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.8894, y: 236.8046}
+  m_AnchoredPosition: {x: -8.8894, y: 150}
   m_SizeDelta: {x: 693.3567, y: 36.3908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1750689270
@@ -3811,8 +3811,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 367}
-  m_SizeDelta: {x: 535.6799, y: 69.0706}
+  m_AnchoredPosition: {x: 0, y: 269}
+  m_SizeDelta: {x: 623.8665, y: 69.0706}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1835982321
 MonoBehaviour:
@@ -3847,7 +3847,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Create Account
+  m_Text: Enter your name
 --- !u!222 &1835982322
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3946,8 +3946,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2033965578}
   - component: {fileID: 2033965577}
-  - component: {fileID: 2033965580}
   - component: {fileID: 2033965579}
+  - component: {fileID: 2033965580}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -4015,15 +4015,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2033965576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90b45ba6adace9b46be359f7dd263e80, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e2fe512a13cf2d44aa2fee7adfebea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walletSelectCustomPrefab: {fileID: 3259697318640616505, guid: 2821d68f994fad643ad3b7af99846f79, type: 3}
   qrCodeCustomPrefab: {fileID: 7915014497306295185, guid: c39dd570dbcf7a04baf69f7c8551165d, type: 3}
   createStatetxn: {fileID: 3232733424486734734, guid: ba8364aee78cb754db727bea4999b80b, type: 3}
-  updateHealthtxn: {fileID: 3232733424486734734, guid: de1f06237d94beb4cabbf84a56462059, type: 3}
-  updateMissiontxn: {fileID: 3232733424486734734, guid: 5565568aa456e484f9e0791e1c8a47dc, type: 3}
   updatePlutoniumtxn: {fileID: 3232733424486734734, guid: 98d0bb84ab1d48d4aa15907fb9469bb5, type: 3}
+  checkWordScript: {fileID: 0}
+  submitGuessTxn: {fileID: 0}
+  GetPlutoniumScript: {fileID: 3232733424486734734, guid: 7315b69c89d153243ab1a3ef13d76568, type: 3}
+  GetPlayerCumulativeScore: {fileID: 0}
+  GetPlayerWinningStreak: {fileID: 0}
+  GetPlayerMaxWinningStreak: {fileID: 0}
+  GetGuessDistribution: {fileID: 0}
 --- !u!114 &2090286582 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2673985554763974977, guid: d43313ead0324a5468096ebb4d279ef3, type: 3}

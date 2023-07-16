@@ -18,7 +18,7 @@ using DapperLabs.Flow.Sdk.Crypto;
 
 
 
-namespace FlowController
+namespace FlowController1
 {
     public class FlowController : MonoBehaviour
     {
@@ -83,7 +83,36 @@ namespace FlowController
                 Destroy(this);
             }
 
-            
+            FlowConfig flowConfig = new FlowConfig()
+            {
+                NetworkUrl = "https://rest-testnet.onflow.org/v1",  // testnet
+                Protocol = FlowConfig.NetworkProtocol.HTTP
+            };
+            FlowSDK.Init(flowConfig);
+
+
+
+            IWallet walletProvider = new WalletConnectProvider();
+            walletProvider.Init(new WalletConnectConfig
+            {
+                ProjectId = "1c3bb53aa29176bc37197ff98498ef39", // insert Project ID from Wallet Connect dashboard
+                ProjectDescription = "A web3 pixel art game made on Flow Chain",
+                ProjectIconUrl = "https://game-website-two.vercel.app/Logo.png",
+                ProjectName = "BackToTheFuture",
+                ProjectUrl = "https://game-website-two.vercel.app/",
+                QrCodeDialogPrefab = qrCodeCustomPrefab, // custom prefab for QR Code dialog (desktop builds)
+                WalletSelectDialogPrefab = walletSelectCustomPrefab // custom prefab for Wallet Select dialog (mobile builds)
+
+            });
+
+            // Register WalletConnect wallet provider with SDK
+            FlowSDK.RegisterWalletProvider(walletProvider);
+
+
+
+            //FlowSDK.RegisterWalletProvider(new DevWalletProvider());
+
+            //StateManager.emulatorAccountDictionary["emulator_service_account"] = "0xf8d6e0586b0a20c7";
         }
 
 
@@ -121,24 +150,16 @@ namespace FlowController
             };
         }
 
-        public void LoginTestNet(System.Action<string, string> onSuccessCallback, System.Action onFailureCallback){
+        public void LoginTestNet(string username, System.Action<string, string> onSuccessCallback, System.Action onFailureCallback)
+        {
             // Authenticate an account with DevWallet
-            
+            if (FlowSDK.GetWalletProvider().IsAuthenticated() == false)
+            {
                 FlowSDK.GetWalletProvider().Authenticate(
                     "", // blank string will show list of accounts from Accounts tab of Flow Control Window
-                    (string address) =>
-                    {
-                        string accountName = FindNameByAddress(StateManager.testAccountDictionary , address); // Get the name of the authenticated account
-                        onSuccessCallback(address, accountName);
-                    },
+                    (string address) => onSuccessCallback(address, username),
                     onFailureCallback);
-            
-
-            FLOW_ACCOUNT = new FlowControl.Account
-            {
-                GatewayName = "Flow Testnet",   // the network to match
-                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
-            };
+            }
         }
 
         public string FindNameByAddress(Dictionary<string, string> dictionary, string value)
@@ -155,31 +176,9 @@ namespace FlowController
         }
 
         public IEnumerator CreateTestAccount(string accountname, System.Action<string, string> onSuccessCallback, System.Action onFailureCallback){
-            // get FLOW account - we are only going to use this for text replacements
-            FlowConfig flowConfig = new FlowConfig()
-            {
-                NetworkUrl = "https://rest-testnet.onflow.org/v1",  // testnet
-                Protocol = FlowConfig.NetworkProtocol.HTTP
-            };
-            FlowSDK.Init(flowConfig);
+            //get FLOW account - we are only going to use this for text replacements
+            
 
-
-
-            IWallet walletProvider = new WalletConnectProvider();
-            walletProvider.Init(new WalletConnectConfig
-            {
-                ProjectId = "1c3bb53aa29176bc37197ff98498ef39", // insert Project ID from Wallet Connect dashboard
-                ProjectDescription = "A web3 pixel art game made on Flow Chain",
-                ProjectIconUrl = "https://game-website-two.vercel.app/Logo.png",
-                ProjectName = "BackToTheFuture",
-                ProjectUrl = "https://game-website-two.vercel.app/",
-                QrCodeDialogPrefab = qrCodeCustomPrefab, // custom prefab for QR Code dialog (desktop builds)
-                WalletSelectDialogPrefab = walletSelectCustomPrefab // custom prefab for Wallet Select dialog (mobile builds)
-
-            });
-
-            // Register WalletConnect wallet provider with SDK
-            FlowSDK.RegisterWalletProvider(walletProvider);
 
             string authAddress = "";
             FlowSDK.GetWalletProvider().Authenticate("", (string address) =>
@@ -239,7 +238,7 @@ namespace FlowController
             FlowControl.Data.Accounts.Add(userAccount);
             AddRecord(StateManager.testAccountDictionary, userSdkAccount.Name, userSdkAccount.Address);
 
-            // Invoke the success callback with the name and address
+            //Invoke the success callback with the name and address
             onSuccessCallback?.Invoke(userName, userAddress); 
 
         }
@@ -247,15 +246,6 @@ namespace FlowController
 
         public IEnumerator CreateEmulatorAccount(string accountname, System.Action<string, string> onSuccessCallback, System.Action onFailureCallback){
             
-            FlowConfig flowConfig = new FlowConfig()
-            {
-                NetworkUrl = "http://127.0.0.1:8888/v1",  // testnet
-                Protocol = FlowConfig.NetworkProtocol.HTTP
-            };
-            FlowSDK.Init(flowConfig);
-            
-            FlowSDK.RegisterWalletProvider(new DevWalletProvider());
-
             string authAddress = "";
             FlowSDK.GetWalletProvider().Authenticate("", (string address) =>
             {
@@ -339,22 +329,24 @@ namespace FlowController
         }
         
         
-        public IEnumerator CreateState(string name, System.Action onSuccessCallback, System.Action onFailureCallback){
+        public IEnumerator CreateState(string username, System.Action onSuccessCallback, System.Action onFailureCallback){
+            
             FLOW_ACCOUNT = new FlowControl.Account
-{
-    GatewayName = "Emulator",   // the network to match
-    AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
-};
+            {
+                GatewayName = "Flow Testnet",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
 
+  
             string transaction = @" 
-                    import BackToTheFuture from 0xf8d6e0586b0a20c7
+                    import BackToTheFuture from GAME_DEPLOY_ACCOUNT
                     transaction {
                         prepare(acct: AuthAccount) {
                             acct.save<@BackToTheFuture.State>(<-BackToTheFuture.createState(name: ""user""), to: /storage/state)            //?? panic(""Could not load counter resource"")
                         }
                     }";
 
-            Task<FlowTransactionResult> transactionTask = FLOW_ACCOUNT.SubmitAndWaitUntilSealed(transaction);
+            Task<FlowTransactionResult> transactionTask = FLOW_ACCOUNT.SubmitAndWaitUntilSealed(FLOW_ACCOUNT.DoTextReplacements(transaction), new CadenceString(username));
             yield return new WaitUntil(() => transactionTask.IsCompleted);
 
             Debug.Log(transactionTask.Result);

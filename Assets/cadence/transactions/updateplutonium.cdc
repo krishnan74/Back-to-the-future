@@ -2,11 +2,17 @@ import BackToTheFuture from 0xf8d6e0586b0a20c7
 
 transaction {
     prepare(acct: AuthAccount) {
-        let ref <- acct.load<@BackToTheFuture.State>(from: /storage/state)            //?? panic("Could not load counter resource")
 
-        ref?.updateMission(mission:"Mission1")
+        let ref <- acct.load<@BackToTheFuture.State>(from: /storage/State)!
 
-        acct.save(<-ref!, to: /storage/state)
+        ref.addPlutonium(_P: 1)
+
+        acct.save(<-ref, to: /storage/State)
+
     }
-}
 
+
+    execute{
+        log("updated plutonium")
+    }
+} 

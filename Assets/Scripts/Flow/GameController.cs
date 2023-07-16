@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Numerics;
 
 
-namespace FlowController{
+namespace FlowControllerlast{
 
     public class GameController : MonoBehaviour
 {
@@ -25,34 +25,34 @@ namespace FlowController{
 
         
 
-        public void CreateEmulatorAccount(){
-            StartCoroutine(FlowController.Instance.CreateEmulatorAccount(inputField.text, OnCreateAccountSuccess, OnCreateAccountFailure));
-        }
+        // public void CreateEmulatorAccount(){
+        //     StartCoroutine(FlowControllerlast.Instance.CreateEmulatorAccount(inputField.text, OnCreateAccountSuccess, OnCreateAccountFailure));
+        // }
 
-        public void CreateTestAccount(){
-            StartCoroutine(FlowController.Instance.CreateTestAccount(inputField.text, OnCreateAccountSuccess, OnCreateAccountFailure));
+        // public void CreateTestAccount(){
+        //     StartCoroutine(FlowControllerlast.Instance.CreateTestAccount(inputField.text, OnCreateAccountSuccess, OnCreateAccountFailure));
 
-        }
-        public void OnCreateAccountSuccess(string username, string address){
+        // }
+        // public void OnCreateAccountSuccess(string username, string address){
  
-            OutputText.text = "Successfull";
+        //     OutputText.text = "Successfull";
 
 
-        }
+        // }
 
-        public void OnCreateAccountFailure(){
-            OutputText.text = "UnSuccessfull, try again";
-        }
+        // public void OnCreateAccountFailure(){
+        //     OutputText.text = "UnSuccessfull, try again";
+        // }
 
-        // Start is called before the first frame update
+        // // Start is called before the first frame update
         public void LoginEmulator()
         {
-            FlowController.Instance.LoginEmulator(OnLoginSuccess, OnLoginFailure);
+            FlowControllerlast.Instance.LoginEmulator("Krish",OnLoginSuccess, OnLoginFailure);
         }
 
-        public void LoginTestNet()
+        public void Login()
         {
-            FlowController.Instance.LoginTestNet(OnLoginSuccess, OnLoginFailure);
+            FlowControllerlast.Instance.Login("Krish",OnLoginSuccess, OnLoginFailure);
         }
 
         
@@ -76,9 +76,9 @@ namespace FlowController{
 
         }
 
-        public void NewGame(string username)
+        public void NewGame()
         {
-            StartCoroutine(FlowController.Instance.CreateState(username, OnNewGameSuccess, OnNewGameFailure));
+            StartCoroutine(FlowControllerlast.Instance.CreateState("Krish", OnNewGameSuccess, OnNewGameFailure));
         }
 
         public void OnNewGameSuccess(){
@@ -94,16 +94,16 @@ namespace FlowController{
 
 
         public void UpdatePlutonium(){
-            StartCoroutine(FlowController.Instance.UpdatePlutonium(OnPlutoSuccess, OnPlutoFailure));
+            StartCoroutine(FlowControllerlast.Instance.UpdatePlutonium(OnPlutoSuccess, OnPlutoFailure));
         }
 
-        /// <summary>
-        /// Function called when login is successful
-        /// </summary>
-        /// <param name="username">The username chosen by the user</param>
-        /// <param name="address">The user's Flow address</param>
+        // /// <summary>
+        // /// Function called when login is successful
+        // /// </summary>
+        // /// <param name="username">The username chosen by the user</param>
+        // /// <param name="address">The user's Flow address</param>
         public void GetPlutonium(){
-            StartCoroutine(FlowController.Instance.GetPlutonium(OnGetPlutoSuccess, OnGetPlutoFailure));
+            StartCoroutine(FlowControllerlast.Instance.GetPlutonium(OnGetPlutoSuccess, OnGetPlutoFailure));
         }
 
         private void OnGetPlutoSuccess(BigInteger plutoCount)
@@ -111,17 +111,25 @@ namespace FlowController{
             updatePlstatus.text = "Pluto Count" + plutoCount;
             Debug.Log("Pluto Count" + plutoCount);
 
+
         }
 
-        /// <summary>
-        /// Function called when login fails
-        /// </summary>
-        private void OnGetPlutoFailure()
+    private void OnGetPlutoFailure()
         {
-            updatePlstatus.text = "Pluto Count not get";
-            Debug.Log("Plutonium not got");
+            
+            Debug.Log("UnsuccessfulPlutoget");
 
         }
+
+        // /// <summary>
+        // /// Function called when login fails
+        // /// </summary>
+        // private void OnGetPlutoFailure()
+        // {
+        //     updatePlstatus.text = "Pluto Count not get";
+        //     Debug.Log("Plutonium not got");
+
+        // }
 
         private void OnPlutoSuccess()
         {
@@ -141,12 +149,12 @@ namespace FlowController{
         }
 
 
-        public void ListContracts(){
-            StartCoroutine(FlowController.Instance.ListContracts());
-        }
+        // public void ListContracts(){
+        //     StartCoroutine(FlowControllerlast.Instance.ListContracts());
+        // }
 
         public void Logout(){
-            FlowController.Instance.Logout();
+            FlowControllerlast.Instance.Logout();
             LoginPanel.SetActive(true);
         }
 

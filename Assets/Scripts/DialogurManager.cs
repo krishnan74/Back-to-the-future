@@ -10,6 +10,8 @@ public class DialogurManager : MonoBehaviour
     public Text actorName;
     public Text messageText;
     public RectTransform backgroundBox;
+    public GameObject StoryTimeline1;
+    public GameObject StoryTimeline2;
 
     public float nextMessageInterval;
     public float initialDelay;
@@ -69,6 +71,12 @@ public class DialogurManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isActive==true)
         {
             NextMessage();
+        }
+
+
+        if(activeMessage == 4){
+            StoryTimeline1.SetActive(false);
+            StoryTimeline2.SetActive(true);
         }
 
                 

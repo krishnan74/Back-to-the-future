@@ -5,10 +5,28 @@
 		"sandboxnet": "access.sandboxnet.nodes.onflow.org:9000",
 		"testnet": "access.devnet.nodes.onflow.org:9000"
 	},
+
+	"contracts": {
+		"Flow": "bttwfGame.cdc"
+	},
+
 	"accounts": {
 		"emulator-account": {
 			"address": "f8d6e0586b0a20c7",
 			"key": "47dd900ecec19e95865f425cd545428225a600941b98943a8241d579f513b31b"
+		},
+
+		"GAME_DEPLOY_ACCOUNT": {
+			"address": "2d3e1c8257c416eb",
+			"key": "68b876c8eee92d656650ddfca0dff2c1ba9ba50b6a30b32818d3bec0556d923a"
+			
+		}
+
+
+	},
+	"deployments": {
+		"emulator": {
+			"GAME_DEPLOY_ACCOUNT": ["Flow"]
 		}
 	}
 }
