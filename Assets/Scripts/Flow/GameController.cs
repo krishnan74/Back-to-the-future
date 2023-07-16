@@ -14,6 +14,11 @@ namespace FlowController{
         
         public InputField inputField; // Reference to the InputField component
         public Text OutputText;
+        public Text CreateStateStatus;
+
+        public Text sampleTransaction;
+
+        public Text updatePlstatus;
 
         public Text AccountName;
         public Text UserAddress;
@@ -78,12 +83,12 @@ namespace FlowController{
 
         public void OnNewGameSuccess(){
             Debug.Log("State Creation Successfull");
-            SceneManager.LoadScene("intro-cutscene");
-
+            CreateStateStatus.text = "Successfull";
         }
 
         public void OnNewGameFailure(){
             Debug.Log("State Creation Failed");
+            CreateStateStatus.text = "UnSuccessfull";
 
         }
 
@@ -103,6 +108,7 @@ namespace FlowController{
 
         private void OnGetPlutoSuccess(BigInteger plutoCount)
         {
+            updatePlstatus.text = "Pluto Count" + plutoCount;
             Debug.Log("Pluto Count" + plutoCount);
 
         }
@@ -112,6 +118,7 @@ namespace FlowController{
         /// </summary>
         private void OnGetPlutoFailure()
         {
+            updatePlstatus.text = "Pluto Count not get";
             Debug.Log("Plutonium not got");
 
         }
@@ -119,6 +126,7 @@ namespace FlowController{
         private void OnPlutoSuccess()
         {
             Debug.Log("Plutonium Update");
+            sampleTransaction.text = "Plutonium update";
 
         }
 
@@ -128,6 +136,7 @@ namespace FlowController{
         private void OnPlutoFailure()
         {
             Debug.Log("Plutonium not updated");
+            sampleTransaction.text = "Plutonium not update";
 
         }
 

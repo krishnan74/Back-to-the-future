@@ -361,10 +361,14 @@ namespace FlowController
 
             if (transactionTask.Result.Error != null || !string.IsNullOrEmpty(transactionTask.Result.ErrorMessage)) 
             { 
-            Debug.LogError($"Error executing transaction: {transactionTask.Result.Error?.Message??transactionTask.Result.ErrorMessage}"); 
-            yield break; 
+            Debug.LogError($"Error executing transaction: {transactionTask.Result.Error?.Message??transactionTask.Result.ErrorMessage}");
+                onFailureCallback(); 
+                yield break; 
+
             }
-            
+
+            onSuccessCallback();
+
         }
 
         public IEnumerator UpdateHealth( System.Action onSuccessCallback, System.Action onFailureCallback){
