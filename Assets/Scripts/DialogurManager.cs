@@ -74,7 +74,7 @@ public class DialogurManager : MonoBehaviour
         }
 
 
-        if(activeMessage == 4){
+        if(activeMessage == 9){
             StoryTimeline1.SetActive(false);
             StoryTimeline2.SetActive(true);
         }
