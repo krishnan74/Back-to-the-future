@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using FlowControllerlast; 
 
 public class GameChanges : MonoBehaviour
 {
@@ -38,26 +38,28 @@ public class GameChanges : MonoBehaviour
 
 
     public void TakeDamage()
+{
+    if (StateManager.lessDamageFromEnemy == 0)
     {
-        switch(StateManager.lessDamageFromEnemy) 
-        {
-        case 0:
-            slider.value -= (DamagePoints0/10000);            
-            break;
-        case 1:
-            slider.value -= (DamagePoints1/10000);
-            break;
-        case 2:
-            slider.value -= (DamagePoints2/10000);
-            break;
-        case 3:
-            slider.value -= (DamagePoints3/10000);
-            break;
-        }
-         spriteRendererPlayer.color = Color.red;
-         StartCoroutine(ChangeColorBack());
-
+        slider.value -= (DamagePoints0 / 10000);
     }
+    else if (StateManager.lessDamageFromEnemy == 1)
+    {
+        slider.value -= (DamagePoints1 / 10000);
+    }
+    else if (StateManager.lessDamageFromEnemy == 2)
+    {
+        slider.value -= (DamagePoints2 / 10000);
+    }
+    else if (StateManager.lessDamageFromEnemy == 3)
+    {
+        slider.value -= (DamagePoints3 / 10000);
+    }
+
+    spriteRendererPlayer.color = Color.red;
+    StartCoroutine(ChangeColorBack());
+}
+
 
     private IEnumerator ChangeColorBack()
     {
@@ -67,25 +69,25 @@ public class GameChanges : MonoBehaviour
 
     private void Update()
     {
-        if(!PauseGame.isPaused){
-            switch(StateManager.increasedHealthIncrementAuto) 
-            {
-            case 0:
-                slider.value += (healthIncrementAuto0/10000);            
-                break;
-            case 1:
-                slider.value += (healthIncrementAuto1/10000);
-                break;
-            case 2:
-                slider.value += (healthIncrementAuto2/10000);
-                break;
-            case 3:
-                slider.value += (healthIncrementAuto3/10000);
-                break;
-
-            }
-            
+       if (!PauseGame.isPaused)
+    {
+        if (StateManager.increasedHealthIncrementAuto == 0)
+        {
+            slider.value += (healthIncrementAuto0 / 10000);
         }
+        else if (StateManager.increasedHealthIncrementAuto == 1)
+        {
+            slider.value += (healthIncrementAuto1 / 10000);
+        }
+        else if (StateManager.increasedHealthIncrementAuto == 2)
+        {
+            slider.value += (healthIncrementAuto2 / 10000);
+        }
+        else if (StateManager.increasedHealthIncrementAuto == 3)
+        {
+            slider.value += (healthIncrementAuto3 / 10000);
+        }
+    }
 
         
 
@@ -133,24 +135,26 @@ public class GameChanges : MonoBehaviour
         scoreText.text = StateManager.plutoCount.ToString();
     }
 
-    public void HealthIncrement(){
+    public void HealthIncrement()
+{
+    if (StateManager.increasedHealthIncrementCollect == 0)
+    {
+        slider.value += (healthIncrementByPoints0 / 10000);
+    }
+    else if (StateManager.increasedHealthIncrementCollect == 1)
+    {
+        slider.value += (healthIncrementByPoints1 / 10000);
+    }
+    else if (StateManager.increasedHealthIncrementCollect == 2)
+    {
+        slider.value += (healthIncrementByPoints2 / 10000);
+    }
+    else if (StateManager.increasedHealthIncrementCollect == 3)
+    {
+        slider.value += (healthIncrementByPoints3 / 10000);
+    }
+}
 
-        switch(StateManager.increasedHealthIncrementCollect) 
-            {
-            case 0:
-                slider.value += (healthIncrementByPoints0/10000);            
-                break;
-            case 1:
-                slider.value += (healthIncrementByPoints1/10000);
-                break;
-            case 2:
-                slider.value += (healthIncrementByPoints2/10000);
-                break;
-            case 3:
-                slider.value += (healthIncrementByPoints3/10000);
-                break;
-
-            }    }
        
 
     // Update is called once per fra

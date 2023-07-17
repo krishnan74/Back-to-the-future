@@ -243,7 +243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.5588989, y: -1.3283081}
+  m_AnchoredPosition: {x: 1.5588379, y: -1.3283691}
   m_SizeDelta: {x: 339.6367, y: 167.6198}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &129707987
@@ -401,7 +401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 329, y: 16}
+  m_AnchoredPosition: {x: 329, y: 11}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &244448086
@@ -1043,7 +1043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -238, y: 15.9999695}
+  m_AnchoredPosition: {x: -291, y: 3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &561022742
@@ -3267,14 +3267,26 @@ MonoBehaviour:
   walletSelectCustomPrefab: {fileID: 3259697318640616505, guid: 2821d68f994fad643ad3b7af99846f79, type: 3}
   qrCodeCustomPrefab: {fileID: 7915014497306295185, guid: c39dd570dbcf7a04baf69f7c8551165d, type: 3}
   createStatetxn: {fileID: 3232733424486734734, guid: ba8364aee78cb754db727bea4999b80b, type: 3}
-  updatePlutoniumtxn: {fileID: 3232733424486734734, guid: 98d0bb84ab1d48d4aa15907fb9469bb5, type: 3}
-  checkWordScript: {fileID: 0}
-  submitGuessTxn: {fileID: 0}
-  GetPlutoniumScript: {fileID: 3232733424486734734, guid: 7315b69c89d153243ab1a3ef13d76568, type: 3}
-  GetPlayerCumulativeScore: {fileID: 0}
-  GetPlayerWinningStreak: {fileID: 0}
-  GetPlayerMaxWinningStreak: {fileID: 0}
-  GetGuessDistribution: {fileID: 0}
+  updateSinglePlutoniumtxn: {fileID: 0}
+  updateFivePlutoniumtxn: {fileID: 0}
+  dec_DamageIncrementtxn: {fileID: 0}
+  inc_DamageIncrementtxn: {fileID: 0}
+  dec_HealthIncrementCollecttxn: {fileID: 0}
+  inc_HealthIncrementCollecttxn: {fileID: 0}
+  dec_IncreasedHealthSpawntxn: {fileID: 0}
+  inc_IncreasedHealthSpawntxn: {fileID: 0}
+  dec_IncreasedPlutoFromEnemytxn: {fileID: 0}
+  inc_IncreasedPlutoFromEnemytxn: {fileID: 0}
+  dec_IncreasedPlutoSpawntxn: {fileID: 0}
+  inc_IncreasedPlutoSpawntxn: {fileID: 0}
+  dec_IncreasedHeroSpeedtxn: {fileID: 0}
+  inc_IncreasedHeroSpeedtxn: {fileID: 0}
+  dec_LessDamageFromEnemytxn: {fileID: 0}
+  inc_LessDamageFromEnemytxn: {fileID: 0}
+  dec_PowerIncrementtxn: {fileID: 0}
+  inc_PowerIncrementtxn: {fileID: 0}
+  dec_SlowEnemySpeedtxn: {fileID: 0}
+  inc_SlowEnemySpeedtxn: {fileID: 0}
 --- !u!114 &2090286582 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2673985554763974977, guid: d43313ead0324a5468096ebb4d279ef3, type: 3}
@@ -3387,7 +3399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2673985553800236421, guid: d43313ead0324a5468096ebb4d279ef3, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2673985553800236421, guid: d43313ead0324a5468096ebb4d279ef3, type: 3}
       propertyPath: m_AnchorMax.x

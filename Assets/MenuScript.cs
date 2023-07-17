@@ -54,6 +54,12 @@ public class MenuScript : MonoBehaviour
         StartCoroutine(LoadAsynchronously("dk"));
     }  
 
+    public void ExitShop(){
+        slider.value = 0f; 
+        loadingPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously("dk"));
+    } 
+
     public void PlatformerGame(){
         slider.value = 0f; 
         loadingPanel.SetActive(true);

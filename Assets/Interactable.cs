@@ -62,6 +62,12 @@ public class Interactable : MonoBehaviour
         StartCoroutine(LoadAsynchronously("Platformer"));
     }
 
+    public void EnterShop(){
+        slider.value = 0f; 
+        minigameloadingPanel.SetActive(true);
+        StartCoroutine(LoadAsynchronously("CardShop"));
+    }
+
     IEnumerator LoadAsynchronously(string sceneName){
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         
