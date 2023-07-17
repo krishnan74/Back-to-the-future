@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - End
   - Lightning
+  - Car
   layers:
   - Default
   - TransparentFX

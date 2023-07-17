@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
+using FlowControllerlast;
 using UnityEngine.UI;
 
 
@@ -43,6 +43,8 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    
+
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")){
             isInRange = false;
@@ -66,6 +68,15 @@ public class Interactable : MonoBehaviour
         slider.value = 0f; 
         minigameloadingPanel.SetActive(true);
         StartCoroutine(LoadAsynchronously("CardShop"));
+    }
+
+    public void EnterEndScene(){
+        if(StateManager.plutoCount > 1000){
+            slider.value = 0f; 
+            minigameloadingPanel.SetActive(true);
+            StartCoroutine(LoadAsynchronously("end-scene"));
+        }
+        
     }
 
     IEnumerator LoadAsynchronously(string sceneName){
