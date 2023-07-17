@@ -10,6 +10,7 @@ namespace FlowControllerlast{
 
     public class GameController : MonoBehaviour
 {
+
         public GameObject LoginPanel;
         
         public InputField inputField; // Reference to the InputField component
@@ -54,9 +55,7 @@ namespace FlowControllerlast{
         {
             FlowControllerlast.Instance.Login("Krish",OnLoginSuccess, OnLoginFailure);
         }
-
-        
-
+   
         private void OnLoginSuccess(string address, string username)
         {
             
@@ -67,9 +66,6 @@ namespace FlowControllerlast{
 
         }
 
-        /// <summary>
-        /// Function called when login fails
-        /// </summary>
         private void OnLoginFailure()
         {
             Debug.Log("Login not Successfull");
@@ -97,39 +93,24 @@ namespace FlowControllerlast{
             StartCoroutine(FlowControllerlast.Instance.UpdatePlutonium(OnPlutoSuccess, OnPlutoFailure));
         }
 
-        // /// <summary>
-        // /// Function called when login is successful
-        // /// </summary>
-        // /// <param name="username">The username chosen by the user</param>
-        // /// <param name="address">The user's Flow address</param>
         public void GetPlutonium(){
             StartCoroutine(FlowControllerlast.Instance.GetPlutonium(OnGetPlutoSuccess, OnGetPlutoFailure));
         }
 
-        private void OnGetPlutoSuccess(BigInteger plutoCount)
+        public void OnGetPlutoSuccess(BigInteger plutoCount)
         {
-            updatePlstatus.text = "Pluto Count" + plutoCount;
+            StateManager.plutoCount = plutoCount;
             Debug.Log("Pluto Count" + plutoCount);
 
 
         }
 
-    private void OnGetPlutoFailure()
+        private void OnGetPlutoFailure()
         {
             
             Debug.Log("UnsuccessfulPlutoget");
 
         }
-
-        // /// <summary>
-        // /// Function called when login fails
-        // /// </summary>
-        // private void OnGetPlutoFailure()
-        // {
-        //     updatePlstatus.text = "Pluto Count not get";
-        //     Debug.Log("Plutonium not got");
-
-        // }
 
         private void OnPlutoSuccess()
         {
@@ -138,9 +119,6 @@ namespace FlowControllerlast{
 
         }
 
-        /// <summary>
-        /// Function called when login fails
-        /// </summary>
         private void OnPlutoFailure()
         {
             Debug.Log("Plutonium not updated");

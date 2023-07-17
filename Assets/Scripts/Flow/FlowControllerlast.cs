@@ -27,18 +27,29 @@ namespace FlowControllerlast
         // The TextAssets containing Cadence scripts and transactions that will be used for the game.
         [Header("Scripts and Transactions")]
         [SerializeField] CadenceTransactionAsset createStatetxn;
+        [SerializeField] CadenceTransactionAsset updateSinglePlutoniumtxn;
+        [SerializeField] CadenceTransactionAsset updateFivePlutoniumtxn;
+        [SerializeField] CadenceTransactionAsset dec_DamageIncrementtxn;
+        [SerializeField] CadenceTransactionAsset inc_DamageIncrementtxn;
+        [SerializeField] CadenceTransactionAsset dec_HealthIncrementCollecttxn;
+        [SerializeField] CadenceTransactionAsset inc_HealthIncrementCollecttxn;
+        [SerializeField] CadenceTransactionAsset dec_IncreasedHealthSpawntxn;
+        [SerializeField] CadenceTransactionAsset inc_IncreasedHealthSpawntxn;
+        [SerializeField] CadenceTransactionAsset dec_IncreasedPlutoFromEnemytxn;
+        [SerializeField] CadenceTransactionAsset inc_IncreasedPlutoFromEnemytxn;
+        [SerializeField] CadenceTransactionAsset dec_IncreasedPlutoSpawntxn;
+        [SerializeField] CadenceTransactionAsset inc_IncreasedPlutoSpawntxn;
+        [SerializeField] CadenceTransactionAsset dec_IncreasedHeroSpeedtxn;
+        [SerializeField] CadenceTransactionAsset inc_IncreasedHeroSpeedtxn;
+        [SerializeField] CadenceTransactionAsset dec_LessDamageFromEnemytxn;
+        [SerializeField] CadenceTransactionAsset inc_LessDamageFromEnemytxn;
+        [SerializeField] CadenceTransactionAsset dec_PowerIncrementtxn;
+        [SerializeField] CadenceTransactionAsset inc_PowerIncrementtxn;
+        [SerializeField] CadenceTransactionAsset dec_SlowEnemySpeedtxn;
+        [SerializeField] CadenceTransactionAsset inc_SlowEnemySpeedtxn;
 
-        [SerializeField] CadenceTransactionAsset updatePlutoniumtxn;
-        [SerializeField] CadenceScriptAsset checkWordScript;
-        [SerializeField] CadenceTransactionAsset submitGuessTxn;
+        
 
-        // Cadence scripts to get the data needed to display the High Scores panel
-        [Header("Highscore Scripts")]
-        [SerializeField] CadenceScriptAsset GetPlutoniumScript;
-        [SerializeField] CadenceScriptAsset GetPlayerCumulativeScore;
-        [SerializeField] CadenceScriptAsset GetPlayerWinningStreak;
-        [SerializeField] CadenceScriptAsset GetPlayerMaxWinningStreak;
-        [SerializeField] CadenceScriptAsset GetGuessDistribution;
 
         // FlowControl Account object, used to help with text replacements in scripts and transactions
         private FlowControl.Account FLOW_ACCOUNT = null;
@@ -177,35 +188,422 @@ namespace FlowControllerlast
 
         public IEnumerator UpdatePlutonium(System.Action onSuccessCallback, System.Action onFailureCallback)
         {
-            
             FLOW_ACCOUNT = new FlowControl.Account
             {
                 GatewayName = "Emulator",   // the network to match
                 AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
             };
-
-
-            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(updatePlutoniumtxn.text);
-
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(updateSinglePlutoniumtxn.text);
             while (!getStateTask.IsCompleted)
             {
 
                 yield return null;
             }
-
-            // check for error. if so, break.
             if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
             {
                 onFailureCallback();
                 yield break;
             }
-
             onSuccessCallback();
-
-
-
             yield return null;
         }
+
+        public IEnumerator Dec_DamageIncrement(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_DamageIncrementtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_DamageIncrement(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_DamageIncrementtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_HealthIncrementCollect(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_HealthIncrementCollecttxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_HealthIncrementCollect(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_HealthIncrementCollecttxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_IncreasedHealthSpawn(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_IncreasedHealthSpawntxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_IncreasedHealthSpawn(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_IncreasedHealthSpawntxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_IncreasedPlutoFromEnemy(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_IncreasedPlutoFromEnemytxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_IncreasedPlutoFromEnemy(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_IncreasedPlutoFromEnemytxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_IncreasedPlutoSpawn(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_IncreasedPlutoSpawntxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_IncreasedPlutoSpawn(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_IncreasedPlutoSpawntxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_IncreasedHeroSpeed(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_IncreasedHeroSpeedtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_IncreasedHeroSpeed(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_IncreasedHeroSpeedtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_LessDamageFromEnemy(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_LessDamageFromEnemytxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_LessDamageFromEnemy(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_LessDamageFromEnemytxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_PowerIncrement(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_PowerIncrementtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_PowerIncrement(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_PowerIncrementtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Dec_SlowEnemySpeed(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(dec_SlowEnemySpeedtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
+        public IEnumerator Inc_SlowEnemySpeed(System.Action onSuccessCallback, System.Action onFailureCallback)
+        {
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(inc_SlowEnemySpeedtxn.text);
+            while (!getStateTask.IsCompleted)
+            {
+
+                yield return null;
+            }
+            if (getStateTask.Result.Error != null || getStateTask.Result.ErrorMessage != string.Empty || getStateTask.Result.Status == FlowTransactionStatus.EXPIRED)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            onSuccessCallback();
+            yield return null;
+        }
+
 
         public IEnumerator GetPlutonium(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
 
@@ -218,16 +616,15 @@ namespace FlowControllerlast
 
             const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
 
-pub fun main(): Int{
+                                pub fun main(): Int{
 
-        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public//public/Statepub).borrow<&BackToTheFuture.State>()?? panic (""we couldnt get state"")
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
 
-        return state.Plutonium
-}";
+                                        return state.Plutonium
 
-
-
-
+                                }";
             Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
             
             yield return new WaitUntil(() => task.IsCompleted);
@@ -237,15 +634,297 @@ pub fun main(): Int{
                 onFailureCallback();
                 yield break;
             }
-
-
             Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
-
             onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
-            
-            
         }
 
-        
+        public IEnumerator GetDamageIncrementLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.DamageIncrement
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetHealthIncrementAutoLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.increasedHealthSpawn
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetHealthIncrementCollectLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.HealthIncrementCollect
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetPlutoniumFromEnemyLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.increasedPlutoFromEnemy
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetPlutoniumSpawnLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.increasedPlutoSpawn
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetHeroSpeedLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.increaseHeroSpeed
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetLessDamageFromEnemyLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.lessDamageFromEnemy
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetPowerIncrementLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.PowerIncrement
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
+        public IEnumerator GetSlowEnemySpeedLevel(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
+
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+                                pub fun main(): Int{
+
+                                        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public/Statepub)   
+                                                        .borrow<&BackToTheFuture.State>()
+                                                        ?? panic (""we couldnt get state"")
+
+                                        return state.slowEnemySpeed
+
+                                }";
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
+            
+            yield return new WaitUntil(() => task.IsCompleted);
+
+            if (task.Result.Error != null)
+            {
+                onFailureCallback();
+                yield break;
+            }
+            Debug.Log($"Script result: {Convert.FromCadence<BigInteger>(task.Result.Value)}");
+            onSuccessCallback(Convert.FromCadence<BigInteger>(task.Result.Value));
+        }
+
     }
 }

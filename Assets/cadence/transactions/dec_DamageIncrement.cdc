@@ -3,16 +3,15 @@ import BackToTheFuture from 0xf8d6e0586b0a20c7
 transaction {
     prepare(acct: AuthAccount) {
 
-        let ref <- acct.load<@BackToTheFuture.State>(from: /storage/State)!
+        let ref <- acct.load<@BackToTheFuture.State>(from: /storage/State)!     
 
-        ref.addPlutonium(_P: 1)
+        ref.dec_DamageInc()
 
         acct.save(<-ref, to: /storage/State)
-
+    
     }
-
 
     execute{
-        log("updated plutonium")
+        log("Damage Decreased!")
     }
-} 
+}
