@@ -208,9 +208,27 @@ namespace FlowControllerlast
         }
 
         public IEnumerator GetPlutonium(System.Action<BigInteger> onSuccessCallback, System.Action onFailureCallback){
-               
 
-            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(GetPlutoniumScript.text);
+
+            FLOW_ACCOUNT = new FlowControl.Account
+            {
+                GatewayName = "Emulator",   // the network to match
+                AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
+            };
+
+            const string code = @"import BackToTheFuture from 0xf8d6e0586b0a20c7
+
+pub fun main(): Int{
+
+        let state = getAccount(0xf8d6e0586b0a20c7).getCapability(/public//public/Statepub).borrow<&BackToTheFuture.State>()?? panic (""we couldnt get state"")
+
+        return state.Plutonium
+}";
+
+
+
+
+            Task<FlowScriptResponse> task = FLOW_ACCOUNT.ExecuteScript(code);
             
             yield return new WaitUntil(() => task.IsCompleted);
 

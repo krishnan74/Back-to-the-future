@@ -1,4 +1,4 @@
-import BackToTheFuture from 0xf8d6e0586b0a20c7
+import BackToTheFuture from GAME_DEPLOY_ACCOUNT
 
 pub fun main(acct: Address): Int{
 

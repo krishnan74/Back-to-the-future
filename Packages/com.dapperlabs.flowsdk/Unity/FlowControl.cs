@@ -738,7 +738,7 @@ namespace DapperLabs.Flow.Sdk.Unity
             /// </example>
             public Task<FlowScriptResponse> ExecuteScript(string script, params CadenceBase[] args)
             {
-                script = DoTextReplacements(script);
+                //script = DoTextReplacements(script);
 
                 FlowScriptRequest sr = new FlowScriptRequest();
                 sr.Script = script;
