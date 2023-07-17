@@ -50,6 +50,13 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void DeUpgrade(int btnNo)
+    {
+        pluto = pluto + shopItemsSO[btnNo].baseCost;
+        PlutoUI.text = "Pluto's : " + pluto.ToString();
+        CheckPurchaseable();
+    }
+
     public void LoadPanels()
     {
         for(int i=0;i<shopItemsSO.Length;i++)
