@@ -114,6 +114,7 @@ namespace FlowControllerlast{
 
         public void OnNewGameSuccess(){
             Debug.Log("State Creation Successfull");
+            StartCoroutine(LoadAsynchronously("intro-cutscene"));
     
         }
 

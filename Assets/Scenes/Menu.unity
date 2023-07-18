@@ -3381,6 +3381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7572ab4a70d2c244f9ea756e375297d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  loadingPanel: {fileID: 0}
   LoginPanel: {fileID: 1098071671}
   inputField: {fileID: 1750689272}
   OutputText: {fileID: 59848126}
@@ -3406,6 +3408,7 @@ MonoBehaviour:
   createStatetxn: {fileID: 3232733424486734734, guid: ba8364aee78cb754db727bea4999b80b, type: 3}
   updateSinglePlutoniumtxn: {fileID: 0}
   updateFivePlutoniumtxn: {fileID: 0}
+  updateTenPlutoniumtxn: {fileID: 0}
   dec_DamageIncrementtxn: {fileID: 0}
   inc_DamageIncrementtxn: {fileID: 0}
   dec_HealthIncrementCollecttxn: {fileID: 0}

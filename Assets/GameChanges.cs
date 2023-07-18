@@ -30,8 +30,6 @@ public class GameChanges : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseGame.isPaused = false;
-        numberText.text = StateManager.plutoCount.ToString();
-        scoreText.text = StateManager.plutoCount.ToString();
         transform.position = StateManager.LastPosition;
 
     }
@@ -89,6 +87,9 @@ public class GameChanges : MonoBehaviour
         }
     }
 
+    numberText.text = StateManager.plutoCount.ToString();
+    scoreText.text = StateManager.plutoCount.ToString();
+
 
 
         StateManager.LastPosition = transform.position;
@@ -111,15 +112,12 @@ public class GameChanges : MonoBehaviour
             StateManager.plutoCount += 8;
         }
 
-        if(StateManager.plutoCountOverall> StateManager.plutoCount){
-            numberText.text = StateManager.plutoCountOverall.ToString();
-            scoreText.text = StateManager.plutoCountOverall.ToString();
-        }
+        
 
-        else{
+        
             numberText.text = StateManager.plutoCount.ToString();
             scoreText.text = StateManager.plutoCount.ToString();
-        }
+        
         
     }
 

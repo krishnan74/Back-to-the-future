@@ -11,7 +11,7 @@ namespace FlowControllerlast
         // Start is called before the first frame update
         public void Start()
         {
-            GetPlutonium();
+            
             GetDamageIncrementLevel();
             GetHealthIncrementAutoLevel();
             GetHealthIncrementCollectLevel();
@@ -24,7 +24,7 @@ namespace FlowControllerlast
 
         public void ShopCloseUpdate()
         {
-            GetPlutonium();
+            
             GetDamageIncrementLevel();
             GetHealthIncrementAutoLevel();
             GetHealthIncrementCollectLevel();
@@ -42,7 +42,7 @@ namespace FlowControllerlast
 
         public void OnGetPlutoSuccess(BigInteger plutoCount)
         {
-            StateManager.plutoCountThroughScript += plutoCount;
+            StateManager.plutoCount += plutoCount;
             Debug.Log("Pluto Count" + plutoCount);
         }
 
@@ -211,6 +211,11 @@ namespace FlowControllerlast
 
             Debug.Log("UnsuccessfulPlutoget");
 
+        }
+
+        public void PlutoUpdateManual()
+        {
+            GetPlutonium();
         }
 
         // public void ListContracts(){
