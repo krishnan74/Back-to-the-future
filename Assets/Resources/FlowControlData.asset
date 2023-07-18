@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlowControlData
   m_EditorClassIdentifier: 
   _emulatorSettings:
-    emulatorDataDirectory: C:/Users/HP/Flow/flowEmulator
+    emulatorDataDirectory: D:/Flow hackthon/Flow-Hackathon/emulator
     flowExecutablePathOverride: 
     runEmulatorInPlayMode: 1
     persistData: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     - Private Key
     - Address
     infoValues:
-    - 328c1d658f94e67a33af067def586a26006c04c66218c1d7575c9f260cfeff49
+    - 63763a401f790f81ad6554e6e6c8ba85c4dfca3e5c47fe93774d7f002138658d
     - 0xf8d6e0586b0a20c7
     _gatewayName: Emulator
   - _name: DeployAccount
