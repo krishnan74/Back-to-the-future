@@ -28,7 +28,6 @@ public class ScoreIncrement : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
             score++;
-            StateManager.plutoCount++;
             PauseScoreText.text = score.ToString();
             GameOverScoreText.text = score.ToString();
             InGameScoreText.text = score.ToString();

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections;
-
+using FlowControllerlast;
 
 
 public class HealthSpawner : MonoBehaviour
@@ -18,6 +18,25 @@ public class HealthSpawner : MonoBehaviour
 
     private void Start()
     {
+        if(StateManager.increasedHealthSpawn == 0){
+            spawnInterval = 5f;
+        }
+
+        if(StateManager.increasedHealthSpawn == 1){
+            spawnInterval = 4f;
+        }
+
+        if(StateManager.increasedHealthSpawn == 2){
+            spawnInterval = 3f;
+        }
+
+        if(StateManager.increasedHealthSpawn == 3){
+            spawnInterval = 1f;
+        }
+
+
+
+
         target = GameObject.FindGameObjectWithTag("Player").transform;
         if (targetTilemap != null)
             tileBounds = targetTilemap.cellBounds;

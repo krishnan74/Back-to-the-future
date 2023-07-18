@@ -29,6 +29,7 @@ namespace FlowControllerlast
         [SerializeField] CadenceTransactionAsset createStatetxn;
         [SerializeField] CadenceTransactionAsset updateSinglePlutoniumtxn;
         [SerializeField] CadenceTransactionAsset updateFivePlutoniumtxn;
+        [SerializeField] CadenceTransactionAsset updateTenPlutoniumtxn;
         [SerializeField] CadenceTransactionAsset dec_DamageIncrementtxn;
         [SerializeField] CadenceTransactionAsset inc_DamageIncrementtxn;
         [SerializeField] CadenceTransactionAsset dec_HealthIncrementCollecttxn;
@@ -48,11 +49,11 @@ namespace FlowControllerlast
         [SerializeField] CadenceTransactionAsset dec_SlowEnemySpeedtxn;
         [SerializeField] CadenceTransactionAsset inc_SlowEnemySpeedtxn;
 
-        
+
 
 
         // FlowControl Account object, used to help with text replacements in scripts and transactions
-        private FlowControl.Account FLOW_ACCOUNT = null;
+        private FlowControl.Account FLOW_ACCOUNT;
 
         private static FlowControllerlast m_instance = null;
         public static FlowControllerlast Instance
@@ -193,7 +194,7 @@ namespace FlowControllerlast
                 GatewayName = "Emulator",   // the network to match
                 AccountConfig = new Dictionary<string, string> { { "Address", FlowSDK.GetWalletProvider().GetAuthenticatedAccount().Address } } // the account address to match
             };
-            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(updateSinglePlutoniumtxn.text);
+            Task<FlowTransactionResult> getStateTask = Transactions.SubmitAndWaitUntilExecuted(updateTenPlutoniumtxn.text);
             while (!getStateTask.IsCompleted)
             {
 
@@ -631,6 +632,7 @@ namespace FlowControllerlast
 
             if (task.Result.Error != null)
             {
+                Debug.Log(task.Result.Error);
                 onFailureCallback();
                 yield break;
             }

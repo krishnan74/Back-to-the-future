@@ -69,7 +69,7 @@ public class GameChanges : MonoBehaviour
 
     private void Update()
     {
-       if (!PauseGame.isPaused)
+       if (!PauseGame.isPaused && !Interactable.inShop)
     {
         if (StateManager.increasedHealthIncrementAuto == 0)
         {
@@ -89,32 +89,7 @@ public class GameChanges : MonoBehaviour
         }
     }
 
-        
 
-        if(Input.GetKeyDown(KeyCode.O)){
-            StateManager.lessDamageFromEnemy += 1;
-        }
-
-        if(Input.GetKeyDown(KeyCode.I)){
-            StateManager.lessDamageFromEnemy -= 1;
-        }
-
-        if(Input.GetKeyDown(KeyCode.M)){
-            StateManager.increasedHealthIncrementCollect += 1;
-        }
-
-        if(Input.GetKeyDown(KeyCode.N)){
-            StateManager.increasedHealthIncrementCollect -= 1;
-        }
-        if(Input.GetKeyDown(KeyCode.L)){
-            StateManager.increasedHealthIncrementAuto += 1;
-
-        }
-        
-
-        if(Input.GetKeyDown(KeyCode.K)){
-            StateManager.increasedHealthIncrementAuto -= 1;
-        }
 
         StateManager.LastPosition = transform.position;
 
@@ -123,14 +98,44 @@ public class GameChanges : MonoBehaviour
 
 
     public void Increment(){
+        if(StateManager.increasedPlutoFromEnemy == 0){
+            StateManager.plutoCount+=1;
+        }
+        else if(StateManager.increasedPlutoFromEnemy == 1){
+            StateManager.plutoCount+=2;
+        }
+        else if(StateManager.increasedPlutoFromEnemy == 2){
+            StateManager.plutoCount += 4;
+        }
+        else if(StateManager.increasedPlutoFromEnemy == 3){
+            StateManager.plutoCount += 8;
+        }
 
-        StateManager.plutoCount++;
-        numberText.text = StateManager.plutoCount.ToString();
-        scoreText.text = StateManager.plutoCount.ToString();
+        if(StateManager.plutoCountOverall> StateManager.plutoCount){
+            numberText.text = StateManager.plutoCountOverall.ToString();
+            scoreText.text = StateManager.plutoCountOverall.ToString();
+        }
+
+        else{
+            numberText.text = StateManager.plutoCount.ToString();
+            scoreText.text = StateManager.plutoCount.ToString();
+        }
+        
     }
 
     public void EnemyPlutoIncrement(){
-        StateManager.plutoCount+=5;
+        if(StateManager.increasedPlutoFromEnemy == 0){
+            StateManager.plutoCount+=5;
+        }
+        else if(StateManager.increasedPlutoFromEnemy == 1){
+            StateManager.plutoCount+=10;
+        }
+        else if(StateManager.increasedPlutoFromEnemy == 2){
+            StateManager.plutoCount += 15;
+        }
+        else if(StateManager.increasedPlutoFromEnemy == 3){
+            StateManager.plutoCount += 20;
+        }
         numberText.text = StateManager.plutoCount.ToString();
         scoreText.text = StateManager.plutoCount.ToString();
     }

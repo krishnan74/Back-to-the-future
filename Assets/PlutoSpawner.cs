@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using FlowControllerlast;
 public class PlutoSpawner : MonoBehaviour
 {
     public GameObject PlutoPrefab;
-    public float spawnInterval = 2f;
+    public float spawnInterval;
     public float spawnRadius = 10f;
     public Tilemap targetTilemap;
     private Transform target;
@@ -13,6 +13,22 @@ public class PlutoSpawner : MonoBehaviour
 
     private void Start()
     {
+        if(StateManager.increasedPlutoSpawn == 0){
+            spawnInterval = 5f;
+        }
+
+        if(StateManager.increasedPlutoSpawn == 1){
+            spawnInterval = 4f;
+        }
+
+        if(StateManager.increasedPlutoSpawn == 2){
+            spawnInterval = 3f;
+        }
+
+        if(StateManager.increasedPlutoSpawn == 3){
+            spawnInterval = 1f;
+        }
+
         target = GameObject.FindGameObjectWithTag("Player").transform;
         if (targetTilemap != null)
             tileBounds = targetTilemap.cellBounds;

@@ -17,7 +17,7 @@ namespace FlowControllerlast
         // Start is called before the first frame update
         void Start()
         {
-            PlutoUI.text = "Pluto's : " + StateManager.plutoCount.ToString();
+            PlutoUI.text = "Pluto's : " + StateManager.plutoCountOverall.ToString();
             LoadPanels();
             CheckPurchaseable();
         }
@@ -32,7 +32,7 @@ namespace FlowControllerlast
         {
             for (int i = 0; i < shopItemsSO.Length; i++)
             {
-                if (StateManager.plutoCount >= shopItemsSO[i].baseCost)
+                if (StateManager.plutoCountOverall >= shopItemsSO[i].baseCost)
                 {
                     myPurchaseBtns[i].interactable = true;
                 }
@@ -46,7 +46,7 @@ namespace FlowControllerlast
         public void PurchaseItem(int btnNo)
         {
 
-            if (StateManager.plutoCount >= shopItemsSO[btnNo].baseCost)
+            if (StateManager.plutoCountOverall >= shopItemsSO[btnNo].baseCost)
             {
                 switch (btnNo)
                 {
@@ -86,14 +86,14 @@ namespace FlowControllerlast
                         break;
                 }
             
-                StateManager.plutoCount = StateManager.plutoCount - shopItemsSO[btnNo].baseCost;
-                PlutoUI.text = "Pluto's : " + StateManager.plutoCount.ToString();
+                StateManager.plutoCountOverall = StateManager.plutoCountOverall - shopItemsSO[btnNo].baseCost;
+                PlutoUI.text = "Pluto's : " + StateManager.plutoCountOverall.ToString();
                 CheckPurchaseable();
             }
         }
         public void DeUpgrade(int btnNo)
         {
-            if (StateManager.plutoCount >= shopItemsSO[btnNo].baseCost)
+            if (StateManager.plutoCountOverall >= shopItemsSO[btnNo].baseCost)
             {
                 switch (btnNo)
                 {
@@ -134,8 +134,8 @@ namespace FlowControllerlast
                         break;
                 }
             
-                StateManager.plutoCount = StateManager.plutoCount + shopItemsSO[btnNo].baseCost;
-                PlutoUI.text = "Pluto's : " + StateManager.plutoCount.ToString();
+                StateManager.plutoCountOverall = StateManager.plutoCountOverall + shopItemsSO[btnNo].baseCost;
+                PlutoUI.text = "Pluto's : " + StateManager.plutoCountOverall.ToString();
                 CheckPurchaseable();
             }
         }

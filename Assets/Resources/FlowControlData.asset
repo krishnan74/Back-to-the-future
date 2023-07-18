@@ -38,24 +38,8 @@ MonoBehaviour:
     _applyToGateways:
     - Flow Testnet
   - description: sampleEmulator
-    originalText: GAME_DEPLOY_ACCOUNT
+    originalText: emulator_service_account
     replacementText: 0xf8d6e0586b0a20c7
-    active: 1
-    _applyToAccounts:
-    - All
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: Sed
-    replacementText: 0xe9dd1081676bbc90
-    active: 1
-    _applyToAccounts:
-    - All
-    _applyToGateways:
-    - Emulator
-  - description: User Address
-    originalText: 
-    replacementText: 0x0dbaa95c7691bc4f
     active: 1
     _applyToAccounts:
     - All
@@ -67,7 +51,7 @@ MonoBehaviour:
     - Private Key
     - Address
     infoValues:
-    - 47dd900ecec19e95865f425cd545428225a600941b98943a8241d579f513b31b
+    - 328c1d658f94e67a33af067def586a26006c04c66218c1d7575c9f260cfeff49
     - 0xf8d6e0586b0a20c7
     _gatewayName: Emulator
   - _name: DeployAccount

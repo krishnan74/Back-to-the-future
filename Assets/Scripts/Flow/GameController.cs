@@ -11,6 +11,8 @@ namespace FlowControllerlast{
     public class GameController : MonoBehaviour
 {
 
+        public Slider slider;
+        public GameObject loadingPanel;
         public GameObject LoginPanel;
         
         public InputField inputField; // Reference to the InputField component
@@ -25,6 +27,32 @@ namespace FlowControllerlast{
         public Text UserAddress;
 
         
+        public static GameController Instance
+        {
+            get
+            {
+                if (m_instance == null)
+                {
+                    m_instance = FindObjectOfType<GameController>();
+                }
+
+                return m_instance;
+            }
+        }
+
+                private static GameController m_instance = null;
+
+                private void Start()
+        {
+            if (Instance != this)
+            {
+                Destroy(this);
+                return;
+            }
+
+            //Set the starting state to be the LOGIN state.
+         
+        }
 
         // public void CreateEmulatorAccount(){
         //     StartCoroutine(FlowControllerlast.Instance.CreateEmulatorAccount(inputField.text, OnCreateAccountSuccess, OnCreateAccountFailure));
@@ -46,6 +74,13 @@ namespace FlowControllerlast{
         // }
 
         // // Start is called before the first frame update
+
+        // private void Update() {
+        //     if(Input.GetKeyDown(KeyCode.Space)){
+        //         GetPlutonium();
+        //     }
+        // }
+
         public void LoginEmulator()
         {
             FlowControllerlast.Instance.LoginEmulator("Krish",OnLoginSuccess, OnLoginFailure);
@@ -79,12 +114,12 @@ namespace FlowControllerlast{
 
         public void OnNewGameSuccess(){
             Debug.Log("State Creation Successfull");
-            CreateStateStatus.text = "Successfull";
+    
         }
 
         public void OnNewGameFailure(){
             Debug.Log("State Creation Failed");
-            CreateStateStatus.text = "UnSuccessfull";
+   
 
         }
 
@@ -93,47 +128,40 @@ namespace FlowControllerlast{
             StartCoroutine(FlowControllerlast.Instance.UpdatePlutonium(OnPlutoSuccess, OnPlutoFailure));
         }
 
-        public void GetPlutonium(){
-            StartCoroutine(FlowControllerlast.Instance.GetPlutonium(OnGetPlutoSuccess, OnGetPlutoFailure));
-        }
+        
 
-        public void OnGetPlutoSuccess(BigInteger plutoCount)
-        {
-            StateManager.plutoCount = plutoCount;
-            Debug.Log("Pluto Count" + plutoCount);
-
-
-        }
-
-        private void OnGetPlutoFailure()
-        {
-            
-            Debug.Log("UnsuccessfulPlutoget");
-
-        }
 
         private void OnPlutoSuccess()
         {
             Debug.Log("Plutonium Update");
-            sampleTransaction.text = "Plutonium update";
+            slider.value = 0f;
+            loadingPanel.SetActive(true);
+            StartCoroutine(LoadAsynchronously("dk"));
 
         }
 
         private void OnPlutoFailure()
         {
             Debug.Log("Plutonium not updated");
-            sampleTransaction.text = "Plutonium not update";
 
         }
-
-
-        // public void ListContracts(){
-        //     StartCoroutine(FlowControllerlast.Instance.ListContracts());
-        // }
 
         public void Logout(){
             FlowControllerlast.Instance.Logout();
             LoginPanel.SetActive(true);
+        }
+        
+        System.Collections.IEnumerator LoadAsynchronously(string sceneName)
+
+        {
+            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+            while (!operation.isDone)
+            {
+                float progress = Mathf.Clamp01(operation.progress / .9f);
+                slider.value = progress;
+                yield return null;
+            }
         }
 
 }

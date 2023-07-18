@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using FlowControllerlast;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float movementSpeed = 3f;
+    public float movementSpeed;
     public float damageThreshold = 2f; // Distance threshold for taking damage
     private Transform target;
     private GameObject targetObject;
@@ -12,6 +13,9 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Slider enemyHealth;
     public float DamagePoints;
+    public float DamagePoints1;
+    public float DamagePoints2;
+    public float DamagePoints3;
     private GameChanges gameChanges;    
     public GameObject plutoPrefab; // Reference to the Pluto prefab
     public GameObject lightningPrefab;
@@ -26,6 +30,20 @@ public class EnemyMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameChanges = target.GetComponent<GameChanges>();
         SpriteRenderer spriteRendererPlayer = targetObject.GetComponent<SpriteRenderer>();
+
+        if(StateManager.slowEnemySpeed == 0){
+            movementSpeed = 3f;
+        }
+        else if(StateManager.slowEnemySpeed == 1){
+            movementSpeed = 2.5f;
+        }
+        else if(StateManager.slowEnemySpeed == 2){
+            movementSpeed = 5f;
+        }
+        else if(StateManager.slowEnemySpeed == 3){
+            movementSpeed = 1f;
+        }
+
     }
 
     private void Update()
@@ -55,8 +73,37 @@ public class EnemyMovement : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0))
             {
-                enemyHealth.value -= (DamagePoints/1000);
-                gameChanges.powerSlider.value += 0.03f;
+                if(StateManager.increasedDamageIncrement == 0){
+                    enemyHealth.value -= (DamagePoints/1000);
+                }
+
+                else if(StateManager.increasedDamageIncrement == 1){
+                    enemyHealth.value -= (DamagePoints1/1000);
+                }
+
+                else if(StateManager.increasedDamageIncrement == 2){
+                    enemyHealth.value -= (DamagePoints2/1000);
+                }
+                else if(StateManager.increasedDamageIncrement == 3){
+                    enemyHealth.value -= (DamagePoints3/1000);
+                }
+
+                if(StateManager.increasedDamageIncrement == 0){
+                    gameChanges.powerSlider.value += 0.02f;
+                }
+
+                else if(StateManager.increasedDamageIncrement == 1){
+                    gameChanges.powerSlider.value += 0.05f;
+                }
+
+                else if(StateManager.increasedDamageIncrement == 2){
+                    gameChanges.powerSlider.value += 0.1f;
+                }
+                else if(StateManager.increasedDamageIncrement == 3){
+                    gameChanges.powerSlider.value += 0.5f;
+                }
+
+                
             }
         }
 

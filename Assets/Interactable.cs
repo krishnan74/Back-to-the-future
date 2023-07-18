@@ -13,7 +13,10 @@ public class Interactable : MonoBehaviour
     public KeyCode interactKey;
     public UnityEvent interactAction;
     public GameObject interactPanel; 
-    public GameObject minigameloadingPanel; 
+    public GameObject minigameloadingPanel;
+
+    public static bool inShop = false;
+    public GameObject ShopCanvas;
     public Slider slider;
 
 
@@ -64,12 +67,6 @@ public class Interactable : MonoBehaviour
         StartCoroutine(LoadAsynchronously("Platformer"));
     }
 
-    public void EnterShop(){
-        slider.value = 0f; 
-        minigameloadingPanel.SetActive(true);
-        StartCoroutine(LoadAsynchronously("CardShop"));
-    }
-
     public void EnterEndScene(){
         if(StateManager.plutoCount > 1000){
             slider.value = 0f; 
@@ -88,5 +85,24 @@ public class Interactable : MonoBehaviour
             yield return null; 
         }
     }
+
+    public void EnterShop()
+    {
+        Time.timeScale = 0;
+        inShop = true;
+        ShopCanvas.SetActive(true);
+
+        // Optionally, you can add additional pause logic here
+    }
+
+    public void ExitShop()
+    {
+        Time.timeScale = 1;
+        inShop = false;
+        ShopCanvas.SetActive(false);
+
+        // Optionally, you can add additional resume logic here
+    }
+
 
 }

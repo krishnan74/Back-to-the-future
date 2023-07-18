@@ -1,9 +1,10 @@
 using UnityEngine;
+using FlowControllerlast;
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float spawnInterval = 2f;
+    public float spawnInterval = 5f;
     public float spawnRadius = 10f;
     private Transform target;
 

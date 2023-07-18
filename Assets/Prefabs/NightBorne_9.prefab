@@ -311,7 +311,10 @@ MonoBehaviour:
   movementSpeed: 5
   damageThreshold: 2
   enemyHealth: {fileID: 394411800749103874}
-  DamagePoints: 360
+  DamagePoints: 300
+  DamagePoints1: 420
+  DamagePoints2: 500
+  DamagePoints3: 600
   plutoPrefab: {fileID: 5793389803681238876, guid: 6d611d17014ab814bacde8e5cd0ed803, type: 3}
   lightningPrefab: {fileID: 8659141999794128807, guid: b3838e312ef125f4d882e95b4ab5da85, type: 3}
   enemyAnimator: {fileID: 1470241138953665234}
