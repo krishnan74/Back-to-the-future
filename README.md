@@ -21,7 +21,7 @@ Game Instructions :
 3) Click New Game
    
  !!!  Note : Select New Game only when you are playing the game for the first time  !!!
-
+ !!!  Approve all the transactions and wait for some time for the transactions to be executed  !!!
  
-
+Enjoy the Game :)
 
