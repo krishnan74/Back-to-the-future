@@ -28,3 +28,5 @@ Game Instructions :
  
 Enjoy the Game :)
 
+Presentation Link
+https://docs.google.com/presentation/d/1lU8khaQZFiOa5mXC8ANjvIonuGnydIbVJgqK_bF2nC4/edit#slide=id.g22de6e763c5_1_50
